@@ -30,7 +30,7 @@ This site is configured for deployment on Netlify. The `netlify.toml` file conta
 ## Features
 
 - ✅ Full Starlight documentation
-- ✅ Multi-language support  
+- ✅ Multi-language support
 - ✅ Component examples and guides
 - ✅ Mobile-responsive design
 - ✅ Dark/light theme support
@@ -38,4 +38,6 @@ This site is configured for deployment on Netlify. The `netlify.toml` file conta
 
 ## License
 
-MIT - See the original [Starlight repository](https://github.com/withastro/starlight) for details.
+MIT License
+
+Derived from the [Starlight monorepo](https://github.com/withastro/starlight) under the same license.
