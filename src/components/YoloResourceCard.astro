@@ -1,0 +1,296 @@
+---
+// Resource Card Component with Hover States and Metadata
+interface Tag {
+  label: string;
+  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'info';
+}
+
+interface Author {
+  name: string;
+  avatar?: string;
+  role?: string;
+}
+
+interface Metadata {
+  readTime?: string;
+  publishDate?: string;
+  category?: string;
+  difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
+  type?: 'Article' | 'Tutorial' | 'Guide' | 'Documentation' | 'Video' | 'Webinar';
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  href: string;
+  tags?: Array<Tag>;
+  author?: Author;
+  metadata?: Metadata;
+  variant?: 'default' | 'featured' | 'compact' | 'large';
+  className?: string;
+}
+
+const { 
+  title,
+  description,
+  image,
+  href,
+  tags = [],
+  author,
+  metadata = {},
+  variant = 'default',
+  className = ''
+} = Astro.props;
+
+const cardVariants = {
+  default: 'resource-card',
+  featured: 'resource-card resource-card-featured',
+  compact: 'resource-card resource-card-compact',
+  large: 'resource-card resource-card-large'
+};
+
+const tagColors = {
+  primary: 'bg-yolo-accent/10 text-yolo-accent',
+  secondary: 'bg-gray-100 text-gray-700',
+  success: 'bg-green-100 text-green-700',
+  warning: 'bg-yellow-100 text-yellow-700',
+  info: 'bg-blue-100 text-blue-700'
+};
+
+const difficultyColors = {
+  Beginner: 'bg-green-100 text-green-700',
+  Intermediate: 'bg-yellow-100 text-yellow-700',
+  Advanced: 'bg-red-100 text-red-700'
+};
+
+const typeIcons = {
+  Article: '📝',
+  Tutorial: '🎯',
+  Guide: '📚',
+  Documentation: '📖',
+  Video: '🎥',
+  Webinar: '🎤'
+};
+---
+
+<article class={`${cardVariants[variant]} hover-lift group ${className}`} data-testid="resource-card">
+  <a href={href} class="resource-card-link block h-full">
+    <!-- Image Section -->
+    {image && (
+      <div class="resource-card-image relative overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        
+        <!-- Image Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        <!-- Resource Type Badge -->
+        {metadata.type && (
+          <div class="absolute top-4 left-4">
+            <span class="inline-flex items-center space-x-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+              <span>{typeIcons[metadata.type] || '📄'}</span>
+              <span>{metadata.type}</span>
+            </span>
+          </div>
+        )}
+        
+        <!-- Difficulty Badge -->
+        {metadata.difficulty && (
+          <div class="absolute top-4 right-4">
+            <span class={`text-xs font-medium px-2 py-1 rounded-full ${difficultyColors[metadata.difficulty]}`}>
+              {metadata.difficulty}
+            </span>
+          </div>
+        )}
+      </div>
+    )}
+    
+    <!-- Content Section -->
+    <div class="resource-card-content">
+      <!-- Header with Category and Date -->
+      {(metadata.category || metadata.publishDate) && (
+        <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+          {metadata.category && (
+            <span class="resource-card-category">{metadata.category}</span>
+          )}
+          {metadata.publishDate && (
+            <time class="resource-card-date">{metadata.publishDate}</time>
+          )}
+        </div>
+      )}
+      
+      <!-- Title -->
+      <h3 class="resource-card-title font-semibold text-gray-900 mb-3 group-hover:text-yolo-accent transition-colors duration-200">
+        {title}
+      </h3>
+      
+      <!-- Description -->
+      <p class="resource-card-description text-gray-600 mb-4 line-clamp-3">
+        {description}
+      </p>
+      
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <div class="resource-card-tags flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <span class={`text-xs font-medium px-2 py-1 rounded-full ${tagColors[tag.color || 'secondary']}`}>
+              {tag.label}
+            </span>
+          ))}
+        </div>
+      )}
+      
+      <!-- Footer with Author and Metadata -->
+      <div class="resource-card-footer">
+        {author && (
+          <div class="flex items-center space-x-3 mb-3">
+            {author.avatar ? (
+              <img 
+                src={author.avatar} 
+                alt={author.name}
+                class="w-8 h-8 rounded-full object-cover"
+              />
+            ) : (
+              <div class="w-8 h-8 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-white text-sm font-medium">
+                {author.name.charAt(0).toUpperCase()}
+              </div>
+            )}
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">{author.name}</p>
+              {author.role && (
+                <p class="text-xs text-gray-500 truncate">{author.role}</p>
+              )}
+            </div>
+          </div>
+        )}
+        
+        <!-- Read Time and Additional Metadata -->
+        {metadata.readTime && (
+          <div class="flex items-center text-xs text-gray-500">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>{metadata.readTime}</span>
+          </div>
+        )}
+      </div>
+      
+      <!-- Read More Indicator -->
+      <div class="resource-card-indicator flex items-center text-yolo-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+        <span>Read more</span>
+        <svg class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .resource-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-all duration-300;
+  }
+  
+  .resource-card:hover {
+    @apply shadow-lg border-gray-300;
+    transform: translateY(-4px);
+  }
+  
+  .resource-card-featured {
+    @apply border-2 border-yolo-accent/20 bg-gradient-to-br from-white to-yolo-accent/5;
+  }
+  
+  .resource-card-featured:hover {
+    @apply border-yolo-accent/40 shadow-xl;
+  }
+  
+  .resource-card-compact .resource-card-content {
+    @apply p-4;
+  }
+  
+  .resource-card-compact .resource-card-title {
+    @apply text-base mb-2;
+  }
+  
+  .resource-card-compact .resource-card-description {
+    @apply text-sm mb-3;
+  }
+  
+  .resource-card-large .resource-card-content {
+    @apply p-8;
+  }
+  
+  .resource-card-large .resource-card-title {
+    @apply text-xl mb-4;
+  }
+  
+  .resource-card-large .resource-card-description {
+    @apply text-base mb-6;
+  }
+  
+  /* Default variant styles */
+  .resource-card:not(.resource-card-compact):not(.resource-card-large) .resource-card-content {
+    @apply p-6;
+  }
+  
+  .resource-card:not(.resource-card-compact):not(.resource-card-large) .resource-card-title {
+    @apply text-lg;
+  }
+  
+  .resource-card-image {
+    @apply h-48;
+  }
+  
+  .resource-card-compact .resource-card-image {
+    @apply h-32;
+  }
+  
+  .resource-card-large .resource-card-image {
+    @apply h-64;
+  }
+  
+  .resource-card-link:focus {
+    @apply outline-none ring-2 ring-yolo-accent ring-offset-2 rounded-xl;
+  }
+  
+  /* Line clamp utility for description */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Hover animations */
+  .resource-card-featured .resource-card-indicator {
+    @apply text-yolo-blue;
+  }
+  
+  .resource-card:hover .resource-card-tags span {
+    @apply transform scale-105;
+    transition: transform 0.2s ease-out;
+  }
+  
+  /* Featured card glow effect */
+  .resource-card-featured::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(50, 124, 248, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+  }
+  
+  .resource-card-featured:hover::before {
+    opacity: 1;
+  }
+</style>

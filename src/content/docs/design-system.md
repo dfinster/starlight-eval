@@ -347,6 +347,179 @@ This page showcases our comprehensive design system built with Tailwind CSS and 
 - **Enhanced Animations**: Smooth transitions and hover effects
 - **Accessibility**: Full keyboard navigation and ARIA support
 
+## Filter System Components
+
+### Filter System Demo
+<div class="yolo-filter-system bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-lg font-semibold text-gray-900">Filter Options</h3>
+    <button class="filter-clear-all text-sm text-yolo-accent hover:text-yolo-blue transition-colors duration-200">
+      Clear All
+    </button>
+  </div>
+
+  <div class="space-y-6">
+    <div class="filter-group">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Category</label>
+      <div class="relative">
+        <button class="w-full flex items-center justify-between px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all duration-200">
+          <span class="text-gray-700">Select category</span>
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Difficulty Level</label>
+      <div class="space-y-2">
+        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input type="checkbox" class="rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent">
+          <span class="text-gray-700">Beginner</span>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full ml-auto">12</span>
+        </label>
+        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input type="checkbox" class="rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent">
+          <span class="text-gray-700">Intermediate</span>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full ml-auto">8</span>
+        </label>
+        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input type="checkbox" class="rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent">
+          <span class="text-gray-700">Advanced</span>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full ml-auto">3</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 pt-6 border-t border-gray-200">
+    <div class="flex items-center space-x-2 mb-3">
+      <h4 class="text-sm font-medium text-gray-700">Active Filters:</h4>
+      <span class="text-sm text-gray-500">0</span>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <!-- Filter tags appear here when filters are active -->
+    </div>
+  </div>
+</div>
+
+## Resource Cards Components
+
+### Resource Card Variants
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+  <!-- Featured Resource Card -->
+  <article class="resource-card resource-card-featured hover-lift group border-2 border-yolo-accent/20 bg-gradient-to-br from-white to-yolo-accent/5">
+    <div class="resource-card-image relative overflow-hidden h-48">
+      <div class="w-full h-full bg-gradient-to-br from-yolo-blue to-yolo-accent flex items-center justify-center text-white text-4xl">
+        🚀
+      </div>
+      <div class="absolute top-4 left-4">
+        <span class="inline-flex items-center space-x-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+          <span>📚</span>
+          <span>Guide</span>
+        </span>
+      </div>
+      <div class="absolute top-4 right-4">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-700">
+          Beginner
+        </span>
+      </div>
+    </div>
+    
+    <div class="resource-card-content p-6">
+      <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+        <span>Getting Started</span>
+        <time>Dec 15, 2024</time>
+      </div>
+      
+      <h3 class="resource-card-title font-semibold text-lg text-gray-900 mb-3 group-hover:text-yolo-accent transition-colors duration-200">
+        Getting Started with Yolo
+      </h3>
+      
+      <p class="resource-card-description text-gray-600 mb-4">
+        A comprehensive guide to building your first application with the Yolo design system.
+      </p>
+      
+      <div class="resource-card-tags flex flex-wrap gap-2 mb-4">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-yolo-accent/10 text-yolo-accent">Guide</span>
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-700">Beginner</span>
+      </div>
+      
+      <div class="flex items-center space-x-3 mb-3">
+        <div class="w-8 h-8 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-white text-sm font-medium">
+          J
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Jane Doe</p>
+          <p class="text-xs text-gray-500">Senior Developer</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center text-xs text-gray-500">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>5 min read</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Standard Resource Card -->
+  <article class="resource-card hover-lift group bg-white rounded-xl shadow-sm border border-gray-200">
+    <div class="resource-card-image relative overflow-hidden h-48">
+      <div class="w-full h-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-4xl">
+        🎨
+      </div>
+      <div class="absolute top-4 left-4">
+        <span class="inline-flex items-center space-x-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+          <span>🎥</span>
+          <span>Tutorial</span>
+        </span>
+      </div>
+    </div>
+    
+    <div class="resource-card-content p-6">
+      <h3 class="resource-card-title font-semibold text-lg text-gray-900 mb-3 group-hover:text-yolo-accent transition-colors duration-200">
+        Advanced Animation Techniques
+      </h3>
+      
+      <p class="resource-card-description text-gray-600 mb-4">
+        Learn how to create stunning animations with GSAP and the Yolo animation system.
+      </p>
+      
+      <div class="resource-card-tags flex flex-wrap gap-2 mb-4">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 text-blue-700">Tutorial</span>
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">Advanced</span>
+      </div>
+      
+      <div class="flex items-center text-xs text-gray-500">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>15 min read</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Compact Resource Card -->
+  <article class="resource-card resource-card-compact hover-lift group bg-white rounded-xl shadow-sm border border-gray-200">
+    <div class="resource-card-content p-4">
+      <h3 class="resource-card-title font-semibold text-base text-gray-900 mb-2 group-hover:text-yolo-accent transition-colors duration-200">
+        Quick Start Guide
+      </h3>
+      
+      <p class="resource-card-description text-sm text-gray-600 mb-3">
+        Get up and running with Yolo in just 5 minutes.
+      </p>
+      
+      <div class="resource-card-tags flex flex-wrap gap-2">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-700">Quick Start</span>
+      </div>
+    </div>
+  </article>
+</div>
+
 ---
 
 This design system provides a comprehensive set of components and utilities for building beautiful, consistent user interfaces with the Yolo brand aesthetic.

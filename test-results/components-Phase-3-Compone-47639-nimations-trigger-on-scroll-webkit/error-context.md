@@ -69,6 +69,15 @@
           - listitem:
             - link "✅ Navigation Component (Enhanced)":
               - /url: "#-navigation-component-enhanced"
+          - listitem:
+            - link "✅ GSAP Animation Integration (NEW)":
+              - /url: "#-gsap-animation-integration-new"
+          - listitem:
+            - link "✅ Filter System Component (NEW)":
+              - /url: "#-filter-system-component-new"
+          - listitem:
+            - link "✅ Resource Card Components (NEW)":
+              - /url: "#-resource-card-components-new"
       - listitem:
         - link "Live Examples":
           - /url: "#live-examples"
@@ -76,6 +85,9 @@
           - listitem:
             - link "Basic Usage":
               - /url: "#basic-usage"
+          - listitem:
+            - link "GSAP Animation Examples":
+              - /url: "#gsap-animation-examples"
           - listitem:
             - link "Advanced Examples":
               - /url: "#advanced-examples"
@@ -172,6 +184,69 @@
     - listitem:
       - strong: Accessibility features
       - text: "- keyboard navigation and ARIA labels"
+  - heading "✅ GSAP Animation Integration (NEW)" [level=3]
+  - link "Section titled “✅ GSAP Animation Integration (NEW)”":
+    - /url: "#-gsap-animation-integration-new"
+  - list:
+    - listitem:
+      - strong: Advanced scroll-triggered animations
+      - text: with ScrollTrigger
+    - listitem:
+      - strong: Carousel/Slider components
+      - text: with smooth GSAP transitions
+    - listitem:
+      - strong: Logo marquee animations
+      - text: with infinite scrolling
+    - listitem:
+      - strong: Counter animations
+      - text: with number counting effects
+    - listitem:
+      - strong: Progressive enhancement
+      - text: "- CSS fallbacks when GSAP unavailable"
+    - listitem:
+      - strong: Performance optimized
+      - text: with will-change properties
+  - heading "✅ Filter System Component (NEW)" [level=3]
+  - link "Section titled “✅ Filter System Component (NEW)”":
+    - /url: "#-filter-system-component-new"
+  - list:
+    - listitem:
+      - strong: Advanced dropdown filtering
+      - text: with single and multi-select options
+    - listitem:
+      - strong: Active filter management
+      - text: with visual tags and clear functionality
+    - listitem:
+      - strong: Real-time filter updates
+      - text: with custom event handling
+    - listitem:
+      - strong: Responsive design
+      - text: with mobile-optimized interactions
+    - listitem:
+      - strong: Accessible filtering
+      - text: with keyboard navigation and ARIA support
+  - heading "✅ Resource Card Components (NEW)" [level=3]
+  - link "Section titled “✅ Resource Card Components (NEW)”":
+    - /url: "#-resource-card-components-new"
+  - list:
+    - listitem:
+      - strong: Multiple card variants
+      - text: "- default, featured, compact, and large"
+    - listitem:
+      - strong: Rich metadata display
+      - text: "- author, read time, difficulty, categories"
+    - listitem:
+      - strong: Interactive hover effects
+      - text: with GSAP-powered animations
+    - listitem:
+      - strong: Flexible tag system
+      - text: with color-coded categories
+    - listitem:
+      - strong: Resource type indicators
+      - text: with icons and badges
+    - listitem:
+      - strong: Grid layout system
+      - text: with responsive columns and load more functionality
   - heading "Live Examples" [level=2]
   - link "Section titled “Live Examples”":
     - /url: "#live-examples"
@@ -181,6 +256,41 @@
     - /url: "#basic-usage"
   - figure:
     - code: "--- import Hero from '../components/Hero.astro'; import FeatureGrid from '../components/FeatureGrid.astro'; import FeatureCard from '../components/FeatureCard.astro'; --- <Hero title=\"Your Product Title\" subtitle=\"Amazing subtitle here\" ctaButtons={[ {text: \"Get Started\", href: \"/start/\", variant: \"primary\"} ]} /> <FeatureGrid title=\"Key Features\" columns=\"3\"> <FeatureCard icon=\"⚡\" title=\"Fast Performance\" description=\"Lightning fast with optimized animations\" variant=\"default\" iconColor=\"primary\" /> <FeatureCard icon=\"🎨\" title=\"Beautiful Design\" description=\"Modern design principles\" variant=\"elevated\" iconColor=\"gradient\" /> <FeatureCard icon=\"🚀\" title=\"Production Ready\" description=\"Battle-tested components\" variant=\"glass\" iconColor=\"success\" /> </FeatureGrid>"
+    - button "Copy to clipboard"
+  - heading "GSAP Animation Examples" [level=3]
+  - link "Section titled “GSAP Animation Examples”":
+    - /url: "#gsap-animation-examples"
+  - heading "Carousel Component" [level=4]
+  - link "Section titled “Carousel Component”":
+    - /url: "#carousel-component"
+  - figure:
+    - region:
+      - code: "<YoloCarousel slides={[ { title: \"Advanced Analytics\", description: \"Get deep insights into your data with our comprehensive analytics platform.\", icon: \"📊\", link: \"/analytics/\" }, { title: \"Machine Learning\", description: \"Deploy ML models at scale with our optimized inference engine.\", icon: \"🤖\", link: \"/ml/\" }, { title: \"Real-time Processing\", description: \"Process data streams in real-time with low latency guarantees.\", icon: \"⚡\", link: \"/realtime/\" } ]} autoplay={true} showIndicators={true} showNavigation={true} />"
+    - button "Copy to clipboard"
+  - heading "Logo Marquee" [level=4]
+  - link "Section titled “Logo Marquee”":
+    - /url: "#logo-marquee"
+  - figure:
+    - code: "<LogoMarquee logos={[ {name: \"TechCorp\", src: \"/logos/techcorp.svg\", alt: \"TechCorp\"}, {name: \"DataFlow\", src: \"/logos/dataflow.svg\", alt: \"DataFlow\"}, {name: \"CloudSys\", src: \"/logos/cloudsys.svg\", alt: \"CloudSys\"} ]} speed=\"medium\" direction=\"left\" pauseOnHover={true} />"
+    - button "Copy to clipboard"
+  - heading "Animation Utilities" [level=4]
+  - link "Section titled “Animation Utilities”":
+    - /url: "#animation-utilities"
+  - figure:
+    - code: // Use GSAP utilities directly in your components YoloAnimations.fadeIn(element, 0.5); YoloAnimations.slideIn(element, 'left', 0.2); YoloAnimations.scaleIn(element, 0.8);
+    - button "Copy to clipboard"
+  - heading "Filter System" [level=4]
+  - link "Section titled “Filter System”":
+    - /url: "#filter-system"
+  - figure:
+    - code: "<YoloFilterSystem filterGroups={[ { id: 'category', label: 'Category', options: [ {value: 'articles', label: 'Articles', count: 12}, {value: 'tutorials', label: 'Tutorials', count: 8}, {value: 'guides', label: 'Guides', count: 5} ], defaultValue: 'All Categories' }, { id: 'difficulty', label: 'Difficulty', options: [ {value: 'beginner', label: 'Beginner', count: 15}, {value: 'intermediate', label: 'Intermediate', count: 8}, {value: 'advanced', label: 'Advanced', count: 2} ], multiSelect: true } ]} onFilterChange=\"handleFilterChange\" showClearAll={true} />"
+    - button "Copy to clipboard"
+  - heading "Resource Cards" [level=4]
+  - link "Section titled “Resource Cards”":
+    - /url: "#resource-cards"
+  - figure:
+    - region:
+      - code: "<YoloResourceGrid title=\"Latest Resources\" subtitle=\"Discover our curated collection of guides, tutorials, and documentation\" columns=\"3\" showLoadMore={true} > <YoloResourceCard title=\"Getting Started with Yolo\" description=\"A comprehensive guide to building your first application with the Yolo design system.\" image=\"/images/resource-1.jpg\" href=\"/guides/getting-started/\" variant=\"featured\" tags={[ {label: 'Guide', color: 'primary'}, {label: 'Beginner', color: 'success'} ]} author={{ name: 'Jane Doe', role: 'Senior Developer', avatar: '/avatars/jane.jpg' }} metadata={{ readTime: '5 min read', publishDate: 'Dec 15, 2024', category: 'Getting Started', difficulty: 'Beginner', type: 'Guide' }} /> <YoloResourceCard title=\"Advanced Animation Techniques\" description=\"Learn how to create stunning animations with GSAP and the Yolo animation system.\" image=\"/images/resource-2.jpg\" href=\"/tutorials/advanced-animations/\" tags={[ {label: 'Tutorial', color: 'info'}, {label: 'Advanced', color: 'warning'} ]} author={{ name: 'John Smith', role: 'Animation Expert' }} metadata={{ readTime: '15 min read', publishDate: 'Dec 10, 2024', difficulty: 'Advanced', type: 'Tutorial' }} /> </YoloResourceGrid>"
     - button "Copy to clipboard"
   - heading "Advanced Examples" [level=3]
   - link "Section titled “Advanced Examples”":
@@ -219,10 +329,21 @@
   - link "Section titled “⚡ Performance Optimized”":
     - /url: "#-performance-optimized"
   - list:
-    - listitem: Lazy loading animations
-    - listitem: Efficient scroll listeners
-    - listitem: Minimal JavaScript overhead
-    - listitem: CSS-based animations where possible
+    - listitem:
+      - strong: GSAP-powered animations
+      - text: with hardware acceleration
+    - listitem:
+      - strong: Progressive enhancement
+      - text: with CSS fallbacks
+    - listitem:
+      - strong: Efficient scroll listeners
+      - text: using ScrollTrigger
+    - listitem:
+      - strong: Lazy loading animations
+      - text: triggered on viewport entry
+    - listitem:
+      - strong: Minimal JavaScript overhead
+      - text: with optimized GSAP usage
   - heading "🎨 Design System Integration" [level=3]:
     - text: 🎨
     - strong: Design System Integration
@@ -309,6 +430,42 @@
         - cell "Navigation"
         - cell "✅ Complete"
         - cell "Mobile menu, scroll effects"
+      - row "GSAP Animations ✅ Complete Advanced scroll triggers, carousels, marquees":
+        - cell "GSAP Animations":
+          - strong: GSAP Animations
+        - cell "✅ Complete"
+        - cell "Advanced scroll triggers, carousels, marquees":
+          - strong: Advanced scroll triggers, carousels, marquees
+      - row "YoloCarousel ✅ Complete Auto-play, navigation, indicators, progress":
+        - cell "YoloCarousel":
+          - strong: YoloCarousel
+        - cell "✅ Complete"
+        - cell "Auto-play, navigation, indicators, progress":
+          - strong: Auto-play, navigation, indicators, progress
+      - row "LogoMarquee ✅ Complete Infinite scroll, pause on hover, speed control":
+        - cell "LogoMarquee":
+          - strong: LogoMarquee
+        - cell "✅ Complete"
+        - cell "Infinite scroll, pause on hover, speed control":
+          - strong: Infinite scroll, pause on hover, speed control
+      - row "YoloFilterSystem ✅ Complete Multi-select, dropdowns, active filters, clear all":
+        - cell "YoloFilterSystem":
+          - strong: YoloFilterSystem
+        - cell "✅ Complete"
+        - cell "Multi-select, dropdowns, active filters, clear all":
+          - strong: Multi-select, dropdowns, active filters, clear all
+      - row "YoloResourceCard ✅ Complete Multiple variants, metadata, hover effects, tags":
+        - cell "YoloResourceCard":
+          - strong: YoloResourceCard
+        - cell "✅ Complete"
+        - cell "Multiple variants, metadata, hover effects, tags":
+          - strong: Multiple variants, metadata, hover effects, tags
+      - row "YoloResourceGrid ✅ Complete Responsive grid, load more, stagger animations":
+        - cell "YoloResourceGrid":
+          - strong: YoloResourceGrid
+        - cell "✅ Complete"
+        - cell "Responsive grid, load more, stagger animations":
+          - strong: Responsive grid, load more, stagger animations
   - heading "Next Steps" [level=3]
   - link "Section titled “Next Steps”":
     - /url: "#next-steps"

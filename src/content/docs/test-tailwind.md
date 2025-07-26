@@ -289,6 +289,235 @@ This page tests our comprehensive Yolo design system.
   <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
 </div>
 
+## Filter System Test
+
+<div class="yolo-filter-system bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8" data-testid="filter-system">
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-lg font-semibold text-gray-900">Filter Options</h3>
+    <button class="filter-clear-all text-sm text-yolo-accent hover:text-yolo-blue transition-colors duration-200" data-testid="filter-clear-all">
+      Clear All
+    </button>
+  </div>
+
+  <div class="space-y-6">
+    <!-- Category Filter -->
+    <div class="filter-group" data-filter-group="category" data-testid="filter-group-category">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Category</label>
+      <div class="relative">
+        <button class="filter-dropdown-trigger w-full flex items-center justify-between px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all duration-200" data-dropdown-id="filter-category" data-testid="filter-dropdown-category">
+          <span class="filter-selected-text text-gray-700" data-default="Select category">Select category</span>
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        
+        <div class="filter-dropdown-menu absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 opacity-0 invisible transform scale-95 transition-all duration-200 origin-top" id="filter-category" data-testid="filter-dropdown-menu-category">
+          <div class="py-2">
+            <button class="filter-option w-full flex items-center justify-between px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150" data-value="articles" data-group="category" data-testid="filter-option-category-articles">
+              <span class="text-gray-700">Articles</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">12</span>
+            </button>
+            <button class="filter-option w-full flex items-center justify-between px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150" data-value="tutorials" data-group="category" data-testid="filter-option-category-tutorials">
+              <span class="text-gray-700">Tutorials</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">8</span>
+            </button>
+            <button class="filter-option w-full flex items-center justify-between px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150" data-value="guides" data-group="category" data-testid="filter-option-category-guides">
+              <span class="text-gray-700">Guides</span>
+              <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">5</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Difficulty Filter -->
+    <div class="filter-group" data-filter-group="difficulty" data-testid="filter-group-difficulty">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Difficulty Level</label>
+      <div class="space-y-2">
+        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input type="checkbox" class="filter-checkbox rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent" data-value="beginner" data-group="difficulty" data-testid="filter-checkbox-difficulty-beginner">
+          <span class="text-gray-700">Beginner</span>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full ml-auto">15</span>
+        </label>
+        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input type="checkbox" class="filter-checkbox rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent" data-value="intermediate" data-group="difficulty" data-testid="filter-checkbox-difficulty-intermediate">
+          <span class="text-gray-700">Intermediate</span>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full ml-auto">8</span>
+        </label>
+        <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer">
+          <input type="checkbox" class="filter-checkbox rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent" data-value="advanced" data-group="difficulty" data-testid="filter-checkbox-difficulty-advanced">
+          <span class="text-gray-700">Advanced</span>
+          <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full ml-auto">2</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Filters -->
+  <div class="active-filters mt-6 pt-6 border-t border-gray-200" data-testid="active-filters" style="display: none;">
+    <div class="flex items-center space-x-2 mb-3">
+      <h4 class="text-sm font-medium text-gray-700">Active Filters:</h4>
+      <span class="active-filter-count text-sm text-gray-500" data-testid="active-filter-count">0</span>
+    </div>
+    <div class="filter-tags flex flex-wrap gap-2" data-testid="filter-tags">
+      <!-- Filter tags populated by JavaScript -->
+    </div>
+  </div>
+</div>
+
+## Resource Card Tests
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" data-testid="resource-cards-container">
+  <!-- Featured Resource Card -->
+  <article class="resource-card resource-card-featured hover-lift group border-2 border-yolo-accent/20 bg-gradient-to-br from-white to-yolo-accent/5" data-testid="resource-card-featured">
+    <div class="resource-card-image relative overflow-hidden h-48">
+      <div class="w-full h-full bg-gradient-to-br from-yolo-blue to-yolo-accent flex items-center justify-center text-white text-4xl">
+        🚀
+      </div>
+      <div class="absolute top-4 left-4">
+        <span class="inline-flex items-center space-x-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full" data-testid="resource-type-badge">
+          <span>📚</span>
+          <span>Guide</span>
+        </span>
+      </div>
+      <div class="absolute top-4 right-4">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-700" data-testid="difficulty-badge">
+          Beginner
+        </span>
+      </div>
+    </div>
+    
+    <div class="resource-card-content p-6">
+      <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
+        <span data-testid="resource-category">Getting Started</span>
+        <time data-testid="resource-date">Dec 15, 2024</time>
+      </div>
+      
+      <h3 class="resource-card-title font-semibold text-lg text-gray-900 mb-3 group-hover:text-yolo-accent transition-colors duration-200" data-testid="resource-title">
+        Getting Started with Yolo
+      </h3>
+      
+      <p class="resource-card-description text-gray-600 mb-4" data-testid="resource-description">
+        A comprehensive guide to building your first application with the Yolo design system.
+      </p>
+      
+      <div class="resource-card-tags flex flex-wrap gap-2 mb-4" data-testid="resource-tags">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-yolo-accent/10 text-yolo-accent">Guide</span>
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-700">Beginner</span>
+      </div>
+      
+      <div class="flex items-center space-x-3 mb-3" data-testid="resource-author">
+        <div class="w-8 h-8 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-white text-sm font-medium">
+          J
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Jane Doe</p>
+          <p class="text-xs text-gray-500">Senior Developer</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center text-xs text-gray-500" data-testid="resource-metadata">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>5 min read</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Standard Resource Card -->
+  <article class="resource-card hover-lift group bg-white rounded-xl shadow-sm border border-gray-200" data-testid="resource-card-standard">
+    <div class="resource-card-image relative overflow-hidden h-48">
+      <div class="w-full h-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-4xl">
+        🎨
+      </div>
+      <div class="absolute top-4 left-4">
+        <span class="inline-flex items-center space-x-1 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+          <span>🎥</span>
+          <span>Tutorial</span>
+        </span>
+      </div>
+    </div>
+    
+    <div class="resource-card-content p-6">
+      <h3 class="resource-card-title font-semibold text-lg text-gray-900 mb-3 group-hover:text-yolo-accent transition-colors duration-200">
+        Advanced Animation Techniques
+      </h3>
+      
+      <p class="resource-card-description text-gray-600 mb-4">
+        Learn how to create stunning animations with GSAP and the Yolo animation system.
+      </p>
+      
+      <div class="resource-card-tags flex flex-wrap gap-2 mb-4">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-blue-100 text-blue-700">Tutorial</span>
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-yellow-100 text-yellow-700">Advanced</span>
+      </div>
+      
+      <div class="flex items-center text-xs text-gray-500">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>15 min read</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- Compact Resource Card -->
+  <article class="resource-card resource-card-compact hover-lift group bg-white rounded-xl shadow-sm border border-gray-200" data-testid="resource-card-compact">
+    <div class="resource-card-content p-4">
+      <h3 class="resource-card-title font-semibold text-base text-gray-900 mb-2 group-hover:text-yolo-accent transition-colors duration-200">
+        Quick Start Guide
+      </h3>
+      
+      <p class="resource-card-description text-sm text-gray-600 mb-3">
+        Get up and running with Yolo in just 5 minutes.
+      </p>
+      
+      <div class="resource-card-tags flex flex-wrap gap-2">
+        <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-700">Quick Start</span>
+      </div>
+    </div>
+  </article>
+</div>
+
+## Resource Grid Test
+
+<section class="yolo-resource-grid" data-testid="resource-grid">
+  <div class="resource-grid-header text-center mb-12">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4 text-gradient" data-testid="resource-grid-title">
+      Test Resource Collection
+    </h2>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto" data-testid="resource-grid-subtitle">
+      Testing the resource grid layout and load more functionality
+    </p>
+  </div>
+
+  <div class="resource-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" data-testid="resource-grid-container">
+    <!-- Grid items would be populated here -->
+    <div class="bg-gray-100 rounded-lg p-6 text-center">
+      <h3 class="font-semibold mb-2">Grid Item 1</h3>
+      <p class="text-gray-600">Testing grid layout</p>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-6 text-center">
+      <h3 class="font-semibold mb-2">Grid Item 2</h3>
+      <p class="text-gray-600">Testing grid layout</p>
+    </div>
+    <div class="bg-gray-100 rounded-lg p-6 text-center">
+      <h3 class="font-semibold mb-2">Grid Item 3</h3>
+      <p class="text-gray-600">Testing grid layout</p>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button class="load-more-btn btn-outline hover:btn-primary transition-all duration-300" data-testid="load-more-btn">
+      <span class="load-more-text">Load More Resources</span>
+      <svg class="w-5 h-5 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
 ## Hover Effects Tests
 
 <div class="grid-feature-cards mb-8">
@@ -367,6 +596,9 @@ This page validates:
 - ✅ **Counter animations** with number counting effects
 - ✅ **Enhanced hover interactions** with GSAP
 - ✅ **Progressive enhancement** with CSS fallbacks
+- ✅ **Filter system** with dropdown and multi-select functionality
+- ✅ **Resource cards** with multiple variants and metadata
+- ✅ **Resource grid** with responsive layout and load more
 - ✅ Enhanced navigation component with dropdowns
 - ✅ Mobile responsive navigation
 - ✅ Accessibility features

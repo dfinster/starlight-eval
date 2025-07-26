@@ -1,0 +1,378 @@
+---
+// Filter System Component with Dropdown Functionality
+interface FilterOption {
+  value: string;
+  label: string;
+  count?: number;
+}
+
+interface FilterGroup {
+  id: string;
+  label: string;
+  options: Array<FilterOption>;
+  multiSelect?: boolean;
+  defaultValue?: string | string[];
+}
+
+interface Props {
+  filterGroups: Array<FilterGroup>;
+  onFilterChange?: string; // JavaScript function name to call
+  className?: string;
+  showClearAll?: boolean;
+}
+
+const { 
+  filterGroups = [],
+  onFilterChange = '',
+  className = '',
+  showClearAll = true
+} = Astro.props;
+---
+
+<div class={`yolo-filter-system bg-white rounded-xl shadow-sm border border-gray-200 p-6 ${className}`} data-testid="filter-system">
+  <!-- Filter Header -->
+  <div class="flex items-center justify-between mb-6">
+    <h3 class="text-lg font-semibold text-gray-900">Filter Options</h3>
+    {showClearAll && (
+      <button 
+        class="filter-clear-all text-sm text-yolo-accent hover:text-yolo-blue transition-colors duration-200"
+        data-testid="filter-clear-all"
+      >
+        Clear All
+      </button>
+    )}
+  </div>
+
+  <!-- Filter Groups -->
+  <div class="space-y-6">
+    {filterGroups.map((group) => (
+      <div class="filter-group" data-filter-group={group.id} data-testid={`filter-group-${group.id}`}>
+        <!-- Group Label -->
+        <label class="block text-sm font-medium text-gray-700 mb-3">
+          {group.label}
+        </label>
+
+        <!-- Single Select Dropdown -->
+        {!group.multiSelect && (
+          <div class="relative">
+            <button 
+              class="filter-dropdown-trigger w-full flex items-center justify-between px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-yolo-accent focus:border-transparent"
+              data-dropdown-id={`filter-${group.id}`}
+              data-testid={`filter-dropdown-${group.id}`}
+            >
+              <span class="filter-selected-text text-gray-700" data-default={group.defaultValue || 'Select option'}>
+                {group.defaultValue || 'Select option'}
+              </span>
+              <svg class="w-5 h-5 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <div 
+              class="filter-dropdown-menu absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 opacity-0 invisible transform scale-95 transition-all duration-200 origin-top"
+              id={`filter-${group.id}`}
+              data-testid={`filter-dropdown-menu-${group.id}`}
+            >
+              <div class="py-2 max-h-64 overflow-y-auto">
+                {group.options.map((option) => (
+                  <button 
+                    class="filter-option w-full flex items-center justify-between px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-150"
+                    data-value={option.value}
+                    data-group={group.id}
+                    data-testid={`filter-option-${group.id}-${option.value}`}
+                  >
+                    <span class="text-gray-700">{option.label}</span>
+                    {option.count && (
+                      <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                        {option.count}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Multi-Select Checkboxes -->
+        {group.multiSelect && (
+          <div class="space-y-2">
+            {group.options.map((option) => (
+              <label class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-150">
+                <input 
+                  type="checkbox"
+                  class="filter-checkbox rounded border-gray-300 text-yolo-accent focus:ring-yolo-accent focus:ring-2"
+                  data-value={option.value}
+                  data-group={group.id}
+                  data-testid={`filter-checkbox-${group.id}-${option.value}`}
+                />
+                <span class="text-gray-700 flex-1">{option.label}</span>
+                {option.count && (
+                  <span class="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                    {option.count}
+                  </span>
+                )}
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- Active Filters Display -->
+  <div class="active-filters mt-6 pt-6 border-t border-gray-200" data-testid="active-filters">
+    <div class="flex items-center space-x-2 mb-3">
+      <h4 class="text-sm font-medium text-gray-700">Active Filters:</h4>
+      <span class="active-filter-count text-sm text-gray-500" data-testid="active-filter-count">0</span>
+    </div>
+    <div class="filter-tags flex flex-wrap gap-2" data-testid="filter-tags">
+      <!-- Filter tags will be populated by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterSystems = document.querySelectorAll('.yolo-filter-system');
+    
+    filterSystems.forEach((filterSystem) => {
+      const dropdownTriggers = filterSystem.querySelectorAll('.filter-dropdown-trigger');
+      const checkboxes = filterSystem.querySelectorAll('.filter-checkbox');
+      const clearAllBtn = filterSystem.querySelector('.filter-clear-all');
+      const activeFiltersElement = filterSystem.querySelector('.active-filters');
+      const filterTags = filterSystem.querySelector('.filter-tags');
+      const activeFilterCount = filterSystem.querySelector('.active-filter-count');
+      
+      let activeFilters = {};
+      
+      // Initialize dropdowns
+      dropdownTriggers.forEach((trigger) => {
+        const dropdownId = trigger.dataset.dropdownId;
+        const dropdown = document.getElementById(dropdownId);
+        const selectedText = trigger.querySelector('.filter-selected-text');
+        const arrow = trigger.querySelector('svg');
+        
+        if (!dropdown) return;
+        
+        // Toggle dropdown
+        trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = dropdown.classList.contains('opacity-100');
+          
+          // Close all other dropdowns
+          document.querySelectorAll('.filter-dropdown-menu').forEach((menu) => {
+            menu.classList.remove('opacity-100', 'visible');
+            menu.classList.add('opacity-0', 'invisible');
+            menu.style.transform = 'scale(0.95)';
+          });
+          
+          // Reset all arrows
+          document.querySelectorAll('.filter-dropdown-trigger svg').forEach((arrow) => {
+            arrow.style.transform = 'rotate(0deg)';
+          });
+          
+          if (!isOpen) {
+            dropdown.classList.remove('opacity-0', 'invisible');
+            dropdown.classList.add('opacity-100', 'visible');
+            dropdown.style.transform = 'scale(1)';
+            arrow.style.transform = 'rotate(180deg)';
+          }
+        });
+        
+        // Handle option selection
+        const options = dropdown.querySelectorAll('.filter-option');
+        options.forEach((option) => {
+          option.addEventListener('click', () => {
+            const value = option.dataset.value;
+            const group = option.dataset.group;
+            const label = option.querySelector('span').textContent;
+            
+            selectedText.textContent = label;
+            activeFilters[group] = { value, label };
+            
+            // Close dropdown
+            dropdown.classList.remove('opacity-100', 'visible');
+            dropdown.classList.add('opacity-0', 'invisible');
+            dropdown.style.transform = 'scale(0.95)';
+            arrow.style.transform = 'rotate(0deg)';
+            
+            updateActiveFilters();
+            triggerFilterChange();
+          });
+        });
+      });
+      
+      // Handle checkbox changes
+      checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', () => {
+          const group = checkbox.dataset.group;
+          const value = checkbox.dataset.value;
+          const label = checkbox.parentElement.querySelector('span').textContent;
+          
+          if (!activeFilters[group]) {
+            activeFilters[group] = [];
+          }
+          
+          if (checkbox.checked) {
+            activeFilters[group].push({ value, label });
+          } else {
+            activeFilters[group] = activeFilters[group].filter(f => f.value !== value);
+            if (activeFilters[group].length === 0) {
+              delete activeFilters[group];
+            }
+          }
+          
+          updateActiveFilters();
+          triggerFilterChange();
+        });
+      });
+      
+      // Clear all filters
+      if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', () => {
+          activeFilters = {};
+          
+          // Reset dropdowns
+          dropdownTriggers.forEach((trigger) => {
+            const selectedText = trigger.querySelector('.filter-selected-text');
+            const defaultText = selectedText.dataset.default;
+            selectedText.textContent = defaultText;
+          });
+          
+          // Reset checkboxes
+          checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+          });
+          
+          updateActiveFilters();
+          triggerFilterChange();
+        });
+      }
+      
+      // Update active filters display
+      function updateActiveFilters() {
+        const filterCount = Object.keys(activeFilters).length;
+        activeFilterCount.textContent = filterCount;
+        
+        if (filterCount === 0) {
+          activeFiltersElement.style.display = 'none';
+        } else {
+          activeFiltersElement.style.display = 'block';
+        }
+        
+        // Update filter tags
+        filterTags.innerHTML = '';
+        Object.entries(activeFilters).forEach(([group, filter]) => {
+          if (Array.isArray(filter)) {
+            filter.forEach((f) => {
+              createFilterTag(group, f.value, f.label);
+            });
+          } else {
+            createFilterTag(group, filter.value, filter.label);
+          }
+        });
+      }
+      
+      // Create filter tag
+      function createFilterTag(group, value, label) {
+        const tag = document.createElement('span');
+        tag.className = 'inline-flex items-center space-x-2 bg-yolo-accent/10 text-yolo-accent text-sm px-3 py-1 rounded-full';
+        tag.innerHTML = `
+          <span>${label}</span>
+          <button class="hover:text-yolo-blue transition-colors" data-remove-filter='${JSON.stringify({group, value})}'>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        `;
+        
+        // Handle tag removal
+        const removeBtn = tag.querySelector('[data-remove-filter]');
+        removeBtn.addEventListener('click', () => {
+          const filterData = JSON.parse(removeBtn.dataset.removeFilter);
+          removeFilter(filterData.group, filterData.value);
+        });
+        
+        filterTags.appendChild(tag);
+      }
+      
+      // Remove individual filter
+      function removeFilter(group, value) {
+        if (Array.isArray(activeFilters[group])) {
+          activeFilters[group] = activeFilters[group].filter(f => f.value !== value);
+          if (activeFilters[group].length === 0) {
+            delete activeFilters[group];
+          }
+          
+          // Update checkbox
+          const checkbox = filterSystem.querySelector(`[data-group="${group}"][data-value="${value}"]`);
+          if (checkbox) checkbox.checked = false;
+        } else {
+          delete activeFilters[group];
+          
+          // Reset dropdown
+          const trigger = filterSystem.querySelector(`[data-dropdown-id="filter-${group}"]`);
+          if (trigger) {
+            const selectedText = trigger.querySelector('.filter-selected-text');
+            const defaultText = selectedText.dataset.default;
+            selectedText.textContent = defaultText;
+          }
+        }
+        
+        updateActiveFilters();
+        triggerFilterChange();
+      }
+      
+      // Trigger filter change callback
+      function triggerFilterChange() {
+        const filterChangeCallback = filterSystem.dataset.onFilterChange || window[filterSystem.closest('[data-on-filter-change]')?.dataset.onFilterChange];
+        if (filterChangeCallback && typeof window[filterChangeCallback] === 'function') {
+          window[filterChangeCallback](activeFilters);
+        }
+        
+        // Dispatch custom event
+        filterSystem.dispatchEvent(new CustomEvent('filterChange', {
+          detail: { filters: activeFilters },
+          bubbles: true
+        }));
+      }
+      
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.filter-dropdown-menu').forEach((menu) => {
+          menu.classList.remove('opacity-100', 'visible');
+          menu.classList.add('opacity-0', 'invisible');
+          menu.style.transform = 'scale(0.95)';
+        });
+        
+        document.querySelectorAll('.filter-dropdown-trigger svg').forEach((arrow) => {
+          arrow.style.transform = 'rotate(0deg)';
+        });
+      });
+      
+      // Initialize display
+      updateActiveFilters();
+    });
+  });
+</script>
+
+<style>
+  .filter-dropdown-menu {
+    transform-origin: top;
+  }
+  
+  .filter-checkbox:checked {
+    background-color: var(--yolo-accent);
+    border-color: var(--yolo-accent);
+  }
+  
+  .filter-option:hover {
+    background-color: rgba(50, 124, 248, 0.05);
+  }
+  
+  .filter-dropdown-trigger:hover svg {
+    color: var(--yolo-accent);
+  }
+</style>
