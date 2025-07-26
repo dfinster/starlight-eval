@@ -139,20 +139,20 @@ const {
     
     filterSystems.forEach((filterSystem) => {
       const dropdownTriggers = filterSystem.querySelectorAll('.filter-dropdown-trigger');
-      const checkboxes = filterSystem.querySelectorAll('.filter-checkbox');
-      const clearAllBtn = filterSystem.querySelector('.filter-clear-all');
-      const activeFiltersElement = filterSystem.querySelector('.active-filters');
-      const filterTags = filterSystem.querySelector('.filter-tags');
-      const activeFilterCount = filterSystem.querySelector('.active-filter-count');
+      const checkboxes = filterSystem.querySelectorAll('.filter-checkbox') as NodeListOf<HTMLInputElement>;
+      const clearAllBtn = filterSystem.querySelector('.filter-clear-all') as HTMLButtonElement | null;
+      const activeFiltersElement = filterSystem.querySelector('.active-filters') as HTMLElement | null;
+      const filterTags = filterSystem.querySelector('.filter-tags') as HTMLElement | null;
+      const activeFilterCount = filterSystem.querySelector('.active-filter-count') as HTMLElement | null;
       
-      let activeFilters = {};
+      let activeFilters: Record<string, any> = {};
       
       // Initialize dropdowns
       dropdownTriggers.forEach((trigger) => {
-        const dropdownId = trigger.dataset.dropdownId;
-        const dropdown = document.getElementById(dropdownId);
-        const selectedText = trigger.querySelector('.filter-selected-text');
-        const arrow = trigger.querySelector('svg');
+        const dropdownId = (trigger as HTMLElement).dataset.dropdownId;
+        const dropdown = dropdownId ? document.getElementById(dropdownId) : null;
+        const selectedText = trigger.querySelector('.filter-selected-text') as HTMLElement | null;
+        const arrow = trigger.querySelector('svg') as SVGElement | null;
         
         if (!dropdown) return;
         
@@ -163,21 +163,22 @@ const {
           
           // Close all other dropdowns
           document.querySelectorAll('.filter-dropdown-menu').forEach((menu) => {
-            menu.classList.remove('opacity-100', 'visible');
-            menu.classList.add('opacity-0', 'invisible');
-            menu.style.transform = 'scale(0.95)';
+            const menuElement = menu as HTMLElement;
+            menuElement.classList.remove('opacity-100', 'visible');
+            menuElement.classList.add('opacity-0', 'invisible');
+            menuElement.style.transform = 'scale(0.95)';
           });
           
           // Reset all arrows
-          document.querySelectorAll('.filter-dropdown-trigger svg').forEach((arrow) => {
-            arrow.style.transform = 'rotate(0deg)';
+          document.querySelectorAll('.filter-dropdown-trigger svg').forEach((arrowEl) => {
+            (arrowEl as HTMLElement).style.transform = 'rotate(0deg)';
           });
           
           if (!isOpen) {
             dropdown.classList.remove('opacity-0', 'invisible');
             dropdown.classList.add('opacity-100', 'visible');
             dropdown.style.transform = 'scale(1)';
-            arrow.style.transform = 'rotate(180deg)';
+            if (arrow) arrow.style.transform = 'rotate(180deg)';
           }
         });
         
@@ -185,18 +186,22 @@ const {
         const options = dropdown.querySelectorAll('.filter-option');
         options.forEach((option) => {
           option.addEventListener('click', () => {
-            const value = option.dataset.value;
-            const group = option.dataset.group;
-            const label = option.querySelector('span').textContent;
+            const optionEl = option as HTMLElement;
+            const value = optionEl.dataset.value;
+            const group = optionEl.dataset.group;
+            const labelEl = option.querySelector('span');
+            const label = labelEl ? labelEl.textContent : '';
             
-            selectedText.textContent = label;
-            activeFilters[group] = { value, label };
+            if (selectedText && label && group && value) {
+              selectedText.textContent = label;
+              activeFilters[group] = { value, label };
+            }
             
             // Close dropdown
             dropdown.classList.remove('opacity-100', 'visible');
             dropdown.classList.add('opacity-0', 'invisible');
             dropdown.style.transform = 'scale(0.95)';
-            arrow.style.transform = 'rotate(0deg)';
+            if (arrow) arrow.style.transform = 'rotate(0deg)';
             
             updateActiveFilters();
             triggerFilterChange();
@@ -209,7 +214,11 @@ const {
         checkbox.addEventListener('change', () => {
           const group = checkbox.dataset.group;
           const value = checkbox.dataset.value;
-          const label = checkbox.parentElement.querySelector('span').textContent;
+          const parentElement = checkbox.parentElement;
+          const labelEl = parentElement ? parentElement.querySelector('span') : null;
+          const label = labelEl ? labelEl.textContent : '';
+          
+          if (!group || !value || !label) return;
           
           if (!activeFilters[group]) {
             activeFilters[group] = [];
@@ -218,7 +227,7 @@ const {
           if (checkbox.checked) {
             activeFilters[group].push({ value, label });
           } else {
-            activeFilters[group] = activeFilters[group].filter(f => f.value !== value);
+            activeFilters[group] = activeFilters[group].filter((f: any) => f.value !== value);
             if (activeFilters[group].length === 0) {
               delete activeFilters[group];
             }
@@ -236,9 +245,11 @@ const {
           
           // Reset dropdowns
           dropdownTriggers.forEach((trigger) => {
-            const selectedText = trigger.querySelector('.filter-selected-text');
-            const defaultText = selectedText.dataset.default;
-            selectedText.textContent = defaultText;
+            const selectedText = trigger.querySelector('.filter-selected-text') as HTMLElement | null;
+            const defaultText = selectedText ? (selectedText as any).dataset.default : '';
+            if (selectedText && defaultText) {
+              selectedText.textContent = defaultText;
+            }
           });
           
           // Reset checkboxes
@@ -254,29 +265,37 @@ const {
       // Update active filters display
       function updateActiveFilters() {
         const filterCount = Object.keys(activeFilters).length;
-        activeFilterCount.textContent = filterCount;
+        if (activeFilterCount) {
+          activeFilterCount.textContent = filterCount.toString();
+        }
         
-        if (filterCount === 0) {
-          activeFiltersElement.style.display = 'none';
-        } else {
-          activeFiltersElement.style.display = 'block';
+        if (activeFiltersElement) {
+          if (filterCount === 0) {
+            activeFiltersElement.style.display = 'none';
+          } else {
+            activeFiltersElement.style.display = 'block';
+          }
         }
         
         // Update filter tags
-        filterTags.innerHTML = '';
-        Object.entries(activeFilters).forEach(([group, filter]) => {
-          if (Array.isArray(filter)) {
-            filter.forEach((f) => {
-              createFilterTag(group, f.value, f.label);
-            });
-          } else {
-            createFilterTag(group, filter.value, filter.label);
-          }
-        });
+        if (filterTags) {
+          filterTags.innerHTML = '';
+          Object.entries(activeFilters).forEach(([group, filter]) => {
+            if (Array.isArray(filter)) {
+              filter.forEach((f: any) => {
+                createFilterTag(group, f.value, f.label);
+              });
+            } else if (filter && typeof filter === 'object') {
+              createFilterTag(group, (filter as any).value, (filter as any).label);
+            }
+          });
+        }
       }
       
       // Create filter tag
-      function createFilterTag(group, value, label) {
+      function createFilterTag(group: string, value: string, label: string) {
+        if (!filterTags) return;
+        
         const tag = document.createElement('span');
         tag.className = 'inline-flex items-center space-x-2 bg-yolo-accent/10 text-yolo-accent text-sm px-3 py-1 rounded-full';
         tag.innerHTML = `
@@ -289,25 +308,30 @@ const {
         `;
         
         // Handle tag removal
-        const removeBtn = tag.querySelector('[data-remove-filter]');
-        removeBtn.addEventListener('click', () => {
-          const filterData = JSON.parse(removeBtn.dataset.removeFilter);
-          removeFilter(filterData.group, filterData.value);
-        });
+        const removeBtn = tag.querySelector('[data-remove-filter]') as HTMLButtonElement | null;
+        if (removeBtn) {
+          removeBtn.addEventListener('click', () => {
+            const filterDataStr = removeBtn.dataset.removeFilter;
+            if (filterDataStr) {
+              const filterData = JSON.parse(filterDataStr);
+              removeFilter(filterData.group, filterData.value);
+            }
+          });
+        }
         
         filterTags.appendChild(tag);
       }
       
       // Remove individual filter
-      function removeFilter(group, value) {
+      function removeFilter(group: string, value: string) {
         if (Array.isArray(activeFilters[group])) {
-          activeFilters[group] = activeFilters[group].filter(f => f.value !== value);
+          activeFilters[group] = activeFilters[group].filter((f: any) => f.value !== value);
           if (activeFilters[group].length === 0) {
             delete activeFilters[group];
           }
           
           // Update checkbox
-          const checkbox = filterSystem.querySelector(`[data-group="${group}"][data-value="${value}"]`);
+          const checkbox = filterSystem.querySelector(`[data-group="${group}"][data-value="${value}"]`) as HTMLInputElement | null;
           if (checkbox) checkbox.checked = false;
         } else {
           delete activeFilters[group];
@@ -315,9 +339,11 @@ const {
           // Reset dropdown
           const trigger = filterSystem.querySelector(`[data-dropdown-id="filter-${group}"]`);
           if (trigger) {
-            const selectedText = trigger.querySelector('.filter-selected-text');
-            const defaultText = selectedText.dataset.default;
-            selectedText.textContent = defaultText;
+            const selectedText = trigger.querySelector('.filter-selected-text') as HTMLElement | null;
+            const defaultText = selectedText ? (selectedText as any).dataset.default : '';
+            if (selectedText && defaultText) {
+              selectedText.textContent = defaultText;
+            }
           }
         }
         
@@ -327,9 +353,14 @@ const {
       
       // Trigger filter change callback
       function triggerFilterChange() {
-        const filterChangeCallback = filterSystem.dataset.onFilterChange || window[filterSystem.closest('[data-on-filter-change]')?.dataset.onFilterChange];
-        if (filterChangeCallback && typeof window[filterChangeCallback] === 'function') {
-          window[filterChangeCallback](activeFilters);
+        const filterSystemEl = filterSystem as HTMLElement;
+        const callbackName = filterSystemEl.dataset.onFilterChange;
+        const closestEl = filterSystemEl.closest('[data-on-filter-change]') as HTMLElement | null;
+        const closestCallback = closestEl?.dataset.onFilterChange;
+        
+        const finalCallback = callbackName || closestCallback;
+        if (finalCallback && typeof (window as any)[finalCallback] === 'function') {
+          (window as any)[finalCallback](activeFilters);
         }
         
         // Dispatch custom event
@@ -342,13 +373,14 @@ const {
       // Close dropdowns when clicking outside
       document.addEventListener('click', () => {
         document.querySelectorAll('.filter-dropdown-menu').forEach((menu) => {
-          menu.classList.remove('opacity-100', 'visible');
-          menu.classList.add('opacity-0', 'invisible');
-          menu.style.transform = 'scale(0.95)';
+          const menuEl = menu as HTMLElement;
+          menuEl.classList.remove('opacity-100', 'visible');
+          menuEl.classList.add('opacity-0', 'invisible');
+          menuEl.style.transform = 'scale(0.95)';
         });
         
         document.querySelectorAll('.filter-dropdown-trigger svg').forEach((arrow) => {
-          arrow.style.transform = 'rotate(0deg)';
+          (arrow as HTMLElement).style.transform = 'rotate(0deg)';
         });
       });
       

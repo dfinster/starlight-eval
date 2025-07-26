@@ -77,21 +77,25 @@ const gapClasses = {
     const resourceGrids = document.querySelectorAll('.yolo-resource-grid');
     
     resourceGrids.forEach((grid) => {
-      const loadMoreBtn = grid.querySelector('.load-more-btn');
+      const loadMoreBtn = grid.querySelector('.load-more-btn') as HTMLButtonElement | null;
       
       if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', () => {
           // Add loading state
-          const loadMoreText = loadMoreBtn.querySelector('.load-more-text');
-          const originalText = loadMoreText.textContent;
+          const loadMoreText = loadMoreBtn.querySelector('.load-more-text') as HTMLElement | null;
+          const originalText = loadMoreText ? loadMoreText.textContent : 'Load More';
           
-          loadMoreText.textContent = 'Loading...';
+          if (loadMoreText) {
+            loadMoreText.textContent = 'Loading...';
+          }
           loadMoreBtn.disabled = true;
           loadMoreBtn.classList.add('opacity-75', 'cursor-not-allowed');
           
           // Simulate loading (replace with actual API call)
           setTimeout(() => {
-            loadMoreText.textContent = originalText;
+            if (loadMoreText && originalText) {
+              loadMoreText.textContent = originalText;
+            }
             loadMoreBtn.disabled = false;
             loadMoreBtn.classList.remove('opacity-75', 'cursor-not-allowed');
             

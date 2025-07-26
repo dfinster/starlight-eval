@@ -252,7 +252,7 @@ interface Props {
 </div>
 ```
 
-#### Navigation Component - **NEEDS COREWEAVE STYLING**
+#### Navigation Component - **NEEDS YOLO STYLING**
 ```astro
 ---
 // src/components/Navigation.astro
@@ -346,7 +346,7 @@ function animateCounter(element, target, duration = 2000) {
 }
 ```
 
-#### Missing: GSAP Integration for CoreWeave-Style Animations - **NOT STARTED**
+#### Missing: GSAP Integration for Yolo-Style Animations - **NOT STARTED**
 
 ### 2.5 Phase 5: Performance Optimization (Days 11-12)
 
@@ -873,21 +873,21 @@ This comprehensive plan ensures the successful cloning of Yolo's visual design w
 
 ### IMMEDIATE PRIORITIES (HIGH)
 
-#### 1. CoreWeave Color Alignment - **COMPLETED**
+#### 1. Yolo Color Alignment - **COMPLETED**
 - [x] **Add missing accent blue color** (#327cf8) to tailwind.config.mjs
-- [x] **Update existing components** to use CoreWeave color scheme exactly
-- [x] **Verify color consistency** across all components against CoreWeave reference pages
+- [x] **Update existing components** to use Yolo color scheme exactly
+- [x] **Verify color consistency** across all components against Yolo reference pages
 
 #### 2. Navigation Component Overhaul - **COMPLETED**
-- [x] **Build CoreWeave-style navigation** with dropdown functionality
-- [x] **Implement mobile hamburger menu** matching CoreWeave mobile experience
+- [x] **Build Yolo-style navigation** with dropdown functionality
+- [x] **Implement mobile hamburger menu** matching Yolo mobile experience
 - [x] **Add navigation animations** (smooth show/hide on scroll)
-- [x] **Style navigation** to match CoreWeave navbar exactly
+- [x] **Style navigation** to match Yolo navbar exactly
 
 #### 3. GSAP Animation Integration - **COMPLETED** ✅
 - [x] **Install GSAP and required plugins** (ScrollTrigger, DrawSVG, Draggable) - **COMPLETED**
 - [x] **Replace current animations** with GSAP-powered equivalents - **COMPLETED**
-- [x] **Implement CoreWeave-style scroll animations** from reference pages - **COMPLETED**
+- [x] **Implement Yolo-style scroll animations** from reference pages - **COMPLETED**
 - [x] **Add carousel/slider functionality** with draggable interactions - **COMPLETED**
 
 **Implementation Details:**
@@ -902,7 +902,7 @@ This comprehensive plan ensures the successful cloning of Yolo's visual design w
 - ✅ **Comprehensive testing** and documentation updates
 
 #### 4. Component Library Expansion - **COMPLETED** ✅
-- [x] **Build carousel/slider components** matching CoreWeave sliders - **COMPLETED**
+- [x] **Build carousel/slider components** matching Yolo sliders - **COMPLETED**
 - [x] **Create logo marquee component** for infinite scroll logos - **COMPLETED**
 - [x] **Implement filter system** with dropdown functionality - **COMPLETED**
 - [x] **Create resource card components** with hover states and metadata - **COMPLETED**
@@ -920,14 +920,14 @@ This comprehensive plan ensures the successful cloning of Yolo's visual design w
 ### MEDIUM PRIORITIES
 
 #### 5. Visual Polish & Exact Matching
-- [ ] **Conduct detailed visual comparison** against CoreWeave reference pages
+- [ ] **Conduct detailed visual comparison** against Yolo reference pages
 - [ ] **Fine-tune spacing and typography** to match exactly
 - [ ] **Implement exact hover states** and micro-interactions
 - [ ] **Add missing visual effects** (shadows, borders, gradients)
 
 #### 6. Testing Implementation
-- [ ] **Expand Playwright tests** to cover new CoreWeave-style components
-- [ ] **Add visual regression tests** comparing against CoreWeave screenshots
+- [ ] **Expand Playwright tests** to cover new Yolo-style components
+- [ ] **Add visual regression tests** comparing against Yolo screenshots
 - [ ] **Test carousel/slider functionality** across browsers
 - [ ] **Verify animation performance** meets 60fps standards
 
@@ -940,14 +940,14 @@ This comprehensive plan ensures the successful cloning of Yolo's visual design w
 - [ ] **Optimize CSS delivery** for critical path
 
 #### 8. Documentation & Maintenance
-- [ ] **Update component documentation** with CoreWeave styling notes
+- [ ] **Update component documentation** with Yolo styling notes
 - [ ] **Create animation API reference** for GSAP integrations
 - [ ] **Document carousel/slider usage** patterns
 - [ ] **Add troubleshooting guide** for common styling issues
 
 ### REFERENCE REMINDERS
-- **Always check CoreWeave pages** before implementing: ai-inference, about-us, resource-center
-- **Use claude.local.md** for CoreWeave design system context
+- **Always check Yolo pages** before implementing: ai-inference, about-us, resource-center
+- **Use claude.local.md** for Yolo design system context
 - **Maintain exact visual fidelity** - no approximations or creative liberties
-- **Test responsive behavior** on all breakpoints matching CoreWeave
+- **Test responsive behavior** on all breakpoints matching Yolo
 - **Prioritize smooth, professional animations** over flashy effects
