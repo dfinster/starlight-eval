@@ -1,5 +1,5 @@
 ---
-// Advanced Navigation Component - CoreWeave Style
+// Advanced Navigation Component - Yolo Style
 interface MenuItem {
   text: string;
   href?: string;
@@ -14,12 +14,12 @@ interface Props {
   className?: string;
 }
 
-const { 
+const {
   logo = {text: 'Yolo', href: '/'},
   menuItems = [
     {text: 'Home', href: '/', active: true},
     {
-      text: 'Solutions', 
+      text: 'Solutions',
       dropdown: [
         {text: 'AI Inference', href: '/solutions/ai-inference/', description: 'High-performance AI model inference'},
         {text: 'Machine Learning', href: '/solutions/ml/', description: 'Scalable ML training and deployment'},
@@ -44,15 +44,15 @@ const {
 } = Astro.props;
 ---
 
-<nav 
-  class={`fixed top-0 w-full z-50 transition-all duration-300 ${transparent ? 'bg-transparent' : 'bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100'} ${className}`} 
+<nav
+  class={`fixed top-0 w-full z-50 transition-all duration-300 ${transparent ? 'bg-transparent' : 'bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100'} ${className}`}
   id="main-nav"
   data-testid="main-navigation"
 >
   <div class="container-custom">
     <div class="flex items-center justify-between h-16 lg:h-18">
       <!-- Logo -->
-      <a 
+      <a
         href={logo.href}
         class="flex items-center space-x-3 font-bold text-xl lg:text-2xl text-yolo-blue hover:text-yolo-accent transition-colors duration-200"
         data-testid="nav-logo"
@@ -62,14 +62,14 @@ const {
         </div>
         <span class="hidden sm:inline">{logo.text}</span>
       </a>
-      
+
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center space-x-1">
         {menuItems.map((item, index) => (
           item.dropdown ? (
             <!-- Dropdown Menu Item -->
             <div class="relative group" data-testid={`nav-dropdown-${index}`}>
-              <button 
+              <button
                 class="flex items-center px-3 py-2 font-medium text-gray-700 hover:text-yolo-accent transition-colors duration-200 group-hover:text-yolo-accent"
                 data-dropdown-toggle={`dropdown-${index}`}
               >
@@ -78,15 +78,15 @@ const {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                 </svg>
               </button>
-              
+
               <!-- Dropdown Panel -->
-              <div 
+              <div
                 class="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0"
                 id={`dropdown-${index}`}
               >
                 <div class="p-2">
                   {item.dropdown.map((dropdownItem, dropIndex) => (
-                    <a 
+                    <a
                       href={dropdownItem.href}
                       class="flex flex-col p-3 rounded-lg hover:bg-gray-50 transition-colors duration-150 group"
                       data-testid={`dropdown-item-${index}-${dropIndex}`}
@@ -106,11 +106,11 @@ const {
             </div>
           ) : (
             <!-- Regular Menu Item -->
-            <a 
+            <a
               href={item.href}
               class={`relative px-3 py-2 font-medium transition-all duration-200 group ${
-                item.active 
-                  ? 'text-yolo-accent' 
+                item.active
+                  ? 'text-yolo-accent'
                   : 'text-gray-700 hover:text-yolo-accent'
               }`}
               data-testid={`nav-item-${index}`}
@@ -122,9 +122,9 @@ const {
             </a>
           )
         ))}
-        
+
         <!-- CTA Button -->
-        <a 
+        <a
           href="/design-system/"
           class="btn-primary btn-sm ml-6"
           data-testid="nav-cta"
@@ -132,9 +132,9 @@ const {
           Get Started
         </a>
       </div>
-      
+
       <!-- Mobile Menu Button -->
-      <button 
+      <button
         class="lg:hidden p-2 rounded-lg text-gray-700 hover:text-yolo-accent hover:bg-gray-50 transition-all duration-200"
         id="mobile-menu-button"
         aria-label="Toggle mobile menu"
@@ -145,9 +145,9 @@ const {
         </svg>
       </button>
     </div>
-    
+
     <!-- Mobile Menu -->
-    <div 
+    <div
       class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 bg-white/95 backdrop-blur-lg border-t border-gray-100"
       id="mobile-menu"
       data-testid="mobile-menu"
@@ -157,7 +157,7 @@ const {
           item.dropdown ? (
             <!-- Mobile Dropdown -->
             <div class="mobile-dropdown" data-testid={`mobile-dropdown-${index}`}>
-              <button 
+              <button
                 class="w-full flex items-center justify-between px-4 py-3 font-medium text-gray-700 hover:text-yolo-accent hover:bg-gray-50 transition-colors duration-200"
                 data-mobile-dropdown={`mobile-dropdown-${index}`}
               >
@@ -168,7 +168,7 @@ const {
               </button>
               <div class="pl-4 max-h-0 overflow-hidden transition-all duration-200" id={`mobile-dropdown-${index}-content`}>
                 {item.dropdown.map((dropdownItem, dropIndex) => (
-                  <a 
+                  <a
                     href={dropdownItem.href}
                     class="block px-4 py-2 text-sm text-gray-600 hover:text-yolo-accent hover:bg-gray-50 transition-colors duration-200"
                     data-testid={`mobile-dropdown-item-${index}-${dropIndex}`}
@@ -180,11 +180,11 @@ const {
             </div>
           ) : (
             <!-- Mobile Regular Item -->
-            <a 
+            <a
               href={item.href}
               class={`block px-4 py-3 font-medium transition-colors duration-200 ${
-                item.active 
-                  ? 'text-yolo-accent bg-yolo-accent/10' 
+                item.active
+                  ? 'text-yolo-accent bg-yolo-accent/10'
                   : 'text-gray-700 hover:text-yolo-accent hover:bg-gray-50'
               }`}
               data-testid={`mobile-nav-item-${index}`}
@@ -194,7 +194,7 @@ const {
           )
         ))}
         <div class="px-4 pt-4 border-t border-gray-100 mt-4">
-          <a 
+          <a
             href="/design-system/"
             class="btn-primary w-full justify-center"
             data-testid="mobile-nav-cta"
@@ -214,20 +214,20 @@ const {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
-    
+
     if (!nav || !mobileMenuButton || !mobileMenu || !menuIcon) return;
-    
+
     // State management
     let mobileMenuOpen = false;
     let lastScrollY = window.scrollY;
     let scrollTimeout;
-    
+
     // Enhanced scroll effects with smooth transitions
     const updateNavigation = () => {
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > lastScrollY;
       const scrollDistance = Math.abs(currentScrollY - lastScrollY);
-      
+
       // Add background when scrolled with enhanced blur
       if (currentScrollY > 20) {
         nav.classList.remove('bg-transparent');
@@ -236,11 +236,11 @@ const {
         nav.classList.add('bg-transparent');
         nav.classList.remove('bg-white/95', 'backdrop-blur-lg', 'shadow-sm', 'border-b', 'border-gray-100');
       }
-      
+
       // Smart hide/show navigation with improved logic
       if (scrollDistance > 15) {
         clearTimeout(scrollTimeout);
-        
+
         if (scrollingDown && currentScrollY > 150 && !mobileMenuOpen) {
           // Hide navigation when scrolling down
           nav.style.transform = 'translateY(-100%)';
@@ -250,16 +250,16 @@ const {
           nav.style.transform = 'translateY(0)';
           nav.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         }
-        
+
         // Auto-show after scroll stops
         scrollTimeout = setTimeout(() => {
           nav.style.transform = 'translateY(0)';
         }, 1000);
-        
+
         lastScrollY = currentScrollY;
       }
     };
-    
+
     // Optimized scroll handler with RAF
     let ticking = false;
     const handleScroll = () => {
@@ -271,13 +271,13 @@ const {
         ticking = true;
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Enhanced mobile menu toggle with animations
     const toggleMobileMenu = () => {
       mobileMenuOpen = !mobileMenuOpen;
-      
+
       if (mobileMenuOpen) {
         // Open mobile menu
         mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 20 + 'px';
@@ -298,20 +298,20 @@ const {
         document.body.style.overflow = ''; // Restore scroll
       }
     };
-    
+
     mobileMenuButton.addEventListener('click', toggleMobileMenu);
-    
+
     // Mobile dropdown functionality
     const mobileDropdownButtons = document.querySelectorAll('[data-mobile-dropdown]');
     mobileDropdownButtons.forEach((button, index) => {
       const dropdownContent = document.getElementById(`mobile-dropdown-${index}-content`);
       if (dropdownContent) {
         let isOpen = false;
-        
+
         button.addEventListener('click', (e) => {
           e.preventDefault();
           isOpen = !isOpen;
-          
+
           const chevron = button.querySelector('svg');
           if (isOpen) {
             dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
@@ -323,25 +323,25 @@ const {
         });
       }
     });
-    
+
     // Enhanced outside click handling
     const handleOutsideClick = (e) => {
       if (mobileMenuOpen && !nav.contains(e.target)) {
         toggleMobileMenu();
       }
     };
-    
+
     document.addEventListener('click', handleOutsideClick);
-    
+
     // Improved keyboard navigation
     const handleKeyDown = (e) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
         toggleMobileMenu();
       }
     };
-    
+
     document.addEventListener('keydown', handleKeyDown);
-    
+
     // Enhanced resize handling with debounce
     let resizeTimeout;
     const handleResize = () => {
@@ -352,9 +352,9 @@ const {
         }
       }, 100);
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     // Dropdown hover effects for desktop (enhanced)
     const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle]');
     dropdownTriggers.forEach((trigger) => {
@@ -362,27 +362,27 @@ const {
       const dropdown = document.getElementById(dropdownId);
       if (dropdown) {
         let hoverTimeout;
-        
+
         const showDropdown = () => {
           clearTimeout(hoverTimeout);
           dropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
           dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
         };
-        
+
         const hideDropdown = () => {
           hoverTimeout = setTimeout(() => {
             dropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
             dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
           }, 150);
         };
-        
+
         trigger.parentElement.addEventListener('mouseenter', showDropdown);
         trigger.parentElement.addEventListener('mouseleave', hideDropdown);
         dropdown.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
         dropdown.addEventListener('mouseleave', hideDropdown);
       }
     });
-    
+
     // Initialize navigation state
     updateNavigation();
   });
