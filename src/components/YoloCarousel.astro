@@ -1,0 +1,137 @@
+---
+// Advanced Carousel Component with GSAP
+interface Slide {
+  title: string;
+  description: string;
+  image?: string;
+  icon?: string;
+  link?: string;
+}
+
+interface Props {
+  slides: Array<Slide>;
+  autoplay?: boolean;
+  showIndicators?: boolean;
+  showNavigation?: boolean;
+  className?: string;
+}
+
+const { 
+  slides = [],
+  autoplay = true,
+  showIndicators = true,
+  showNavigation = true,
+  className = ''
+} = Astro.props;
+---
+
+<div class={`yolo-carousel relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-50 to-white shadow-lg ${className}`} data-autoplay={autoplay}>
+  <!-- Slides Container -->
+  <div class="carousel-container relative h-80 lg:h-96">
+    {slides.map((slide, index) => (
+      <div 
+        class="carousel-slide absolute inset-0 flex items-center justify-center p-8"
+        data-slide={index}
+      >
+        <div class="text-center max-w-md">
+          {slide.icon && (
+            <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon">
+              {slide.icon}
+            </div>
+          )}
+          {slide.image && (
+            <img 
+              src={slide.image} 
+              alt={slide.title}
+              class="w-24 h-24 mx-auto mb-6 rounded-full object-cover shadow-lg"
+            />
+          )}
+          <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text">
+            {slide.title}
+          </h3>
+          <p class="text-gray-600 leading-relaxed animate-fade-in">
+            {slide.description}
+          </p>
+          {slide.link && (
+            <a 
+              href={slide.link}
+              class="inline-block mt-6 btn-primary btn-sm"
+            >
+              Learn More
+            </a>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Navigation Arrows -->
+  {showNavigation && slides.length > 1 && (
+    <>
+      <button 
+        class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-yolo-accent hover:bg-white transition-all duration-200 hover:scale-110"
+        aria-label="Previous slide"
+        data-testid="carousel-prev"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      
+      <button 
+        class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-yolo-accent hover:bg-white transition-all duration-200 hover:scale-110"
+        aria-label="Next slide"
+        data-testid="carousel-next"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </>
+  )}
+
+  <!-- Indicators -->
+  {showIndicators && slides.length > 1 && (
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+      {slides.map((_, index) => (
+        <button 
+          class={`carousel-indicator w-3 h-3 rounded-full transition-all duration-200 ${
+            index === 0 
+              ? 'bg-yolo-accent shadow-lg' 
+              : 'bg-white/60 hover:bg-white/80'
+          }`}
+          aria-label={`Go to slide ${index + 1}`}
+          data-slide={index}
+          data-testid={`carousel-indicator-${index}`}
+        />
+      ))}
+    </div>
+  )}
+
+  <!-- Progress Bar -->
+  {autoplay && (
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-200">
+      <div class="carousel-progress h-full bg-gradient-to-r from-yolo-accent to-yolo-light-blue transform origin-left scale-x-0"></div>
+    </div>
+  )}
+</div>
+
+<style>
+  .carousel-slide {
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .carousel-indicator.active {
+    background: linear-gradient(45deg, var(--yolo-accent), var(--yolo-light-blue));
+    box-shadow: 0 4px 12px rgba(50, 124, 248, 0.4);
+  }
+  
+  .carousel-progress {
+    animation: progress 5s linear infinite;
+  }
+  
+  @keyframes progress {
+    0% { transform: scaleX(0); }
+    100% { transform: scaleX(1); }
+  }
+</style>

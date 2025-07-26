@@ -169,23 +169,133 @@ This page showcases our comprehensive design system built with Tailwind CSS and 
   </div>
 </div>
 
-## Animation Examples
+## Animation Examples (GSAP-Powered)
 
 <div class="element-spacing-lg">
   <div class="animate-fade-in p-6 bg-gray-50 rounded-lg">
-    <h3 class="font-semibold mb-2">Fade In Animation</h3>
-    <p class="text-gray-600">This element fades in when scrolled into view.</p>
+    <h3 class="font-semibold mb-2">Advanced Fade In Animation</h3>
+    <p class="text-gray-600">GSAP-powered fade in with scale and position transforms.</p>
   </div>
 
   <div class="animate-slide-left p-6 bg-blue-50 rounded-lg">
-    <h3 class="font-semibold mb-2">Slide Left Animation</h3>
-    <p class="text-gray-600">This element slides in from the left.</p>
+    <h3 class="font-semibold mb-2">Enhanced Slide Left Animation</h3>
+    <p class="text-gray-600">Slides in with rotation and elastic easing using GSAP.</p>
   </div>
 
   <div class="animate-slide-right p-6 bg-green-50 rounded-lg">
-    <h3 class="font-semibold mb-2">Slide Right Animation</h3>
-    <p class="text-gray-600">This element slides in from the right.</p>
+    <h3 class="font-semibold mb-2">Enhanced Slide Right Animation</h3>
+    <p class="text-gray-600">Smooth slide with back.out easing and rotation effects.</p>
   </div>
+
+  <div class="animate-scale-in p-6 bg-purple-50 rounded-lg">
+    <h3 class="font-semibold mb-2">Scale In Animation</h3>
+    <p class="text-gray-600">Elastic scale animation with rotation using GSAP.</p>
+  </div>
+</div>
+
+## GSAP Animation Showcase
+
+### Counter Animations
+<div class="grid-stats mb-8">
+  <div class="text-center">
+    <div class="counter text-3xl font-bold text-yolo-blue" data-target="99" data-suffix="%">0%</div>
+    <div class="text-gray-600 mt-2">Uptime</div>
+  </div>
+  <div class="text-center">
+    <div class="counter text-3xl font-bold text-yolo-blue" data-target="1000" data-suffix="+">0+</div>
+    <div class="text-gray-600 mt-2">Users</div>
+  </div>
+  <div class="text-center">
+    <div class="counter text-3xl font-bold text-yolo-blue" data-target="50" data-suffix="+">0+</div>
+    <div class="text-gray-600 mt-2">Components</div>
+  </div>
+  <div class="text-center">
+    <div class="counter text-3xl font-bold text-yolo-blue" data-target="24" data-suffix="/7">0/7</div>
+    <div class="text-gray-600 mt-2">Support</div>
+  </div>
+</div>
+
+### Carousel Component Demo
+<div class="yolo-carousel mb-8">
+  <div class="carousel-container relative h-80 lg:h-96">
+    <div class="carousel-slide absolute inset-0 flex items-center justify-center p-8" data-slide="0">
+      <div class="text-center max-w-md">
+        <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon">🚀</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text">High Performance</h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in">Experience lightning-fast performance with our optimized infrastructure.</p>
+      </div>
+    </div>
+    <div class="carousel-slide absolute inset-0 flex items-center justify-center p-8" data-slide="1">
+      <div class="text-center max-w-md">
+        <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon">🎨</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text">Beautiful Design</h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in">Stunning design system with modern aesthetics and user experience.</p>
+      </div>
+    </div>
+    <div class="carousel-slide absolute inset-0 flex items-center justify-center p-8" data-slide="2">
+      <div class="text-center max-w-md">
+        <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon">⚡</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text">Developer Ready</h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in">Production-ready components with TypeScript and comprehensive testing.</p>
+      </div>
+    </div>
+  </div>
+  
+  <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-yolo-accent hover:bg-white transition-all duration-200 hover:scale-110">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  
+  <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-yolo-accent hover:bg-white transition-all duration-200 hover:scale-110">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+    <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-200 bg-yolo-accent shadow-lg active" data-slide="0"></button>
+    <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-200 bg-white/60 hover:bg-white/80" data-slide="1"></button>
+    <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-200 bg-white/60 hover:bg-white/80" data-slide="2"></button>
+  </div>
+</div>
+
+### Logo Marquee Demo
+<div class="logo-marquee relative overflow-hidden py-8 mb-8">
+  <div class="marquee-container flex items-center" data-speed="medium" data-direction="left" data-pause-hover="true">
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">TechCorp</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">DataFlow</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">CloudSys</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">InnovateLabs</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">AIVentures</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">NextGen</div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+  <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
 </div>
 
 ## Hover Effects

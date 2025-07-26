@@ -176,23 +176,117 @@ This page tests our comprehensive Yolo design system.
   <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono" data-testid="code-snippet">Code snippet</code>
 </div>
 
-## Animation Tests
+## GSAP Animation Tests
 
 <div class="element-spacing-lg">
   <div class="animate-fade-in p-6 bg-gray-50 rounded-lg" data-testid="fade-item-1">
-    <h3 class="font-semibold mb-2">Fade In Animation</h3>
-    <p class="text-gray-600">Scroll to trigger fade in effect.</p>
+    <h3 class="font-semibold mb-2">GSAP Fade In Animation</h3>
+    <p class="text-gray-600">Enhanced GSAP fade with scale and position transforms.</p>
   </div>
 
   <div class="animate-slide-left p-6 bg-blue-50 rounded-lg" data-testid="slide-left-item">
-    <h3 class="font-semibold mb-2">Slide Left</h3>
-    <p class="text-gray-600">Slides in from left on scroll.</p>
+    <h3 class="font-semibold mb-2">GSAP Slide Left</h3>
+    <p class="text-gray-600">Slides with rotation and elastic easing.</p>
   </div>
 
   <div class="animate-slide-right p-6 bg-green-50 rounded-lg" data-testid="slide-right-item">
-    <h3 class="font-semibold mb-2">Slide Right</h3>
-    <p class="text-gray-600">Slides in from right on scroll.</p>
+    <h3 class="font-semibold mb-2">GSAP Slide Right</h3>
+    <p class="text-gray-600">Smooth slide with back.out easing.</p>
   </div>
+
+  <div class="animate-scale-in p-6 bg-purple-50 rounded-lg" data-testid="scale-item">
+    <h3 class="font-semibold mb-2">GSAP Scale Animation</h3>
+    <p class="text-gray-600">Elastic scale with rotation effects.</p>
+  </div>
+</div>
+
+## Carousel Component Test
+
+<div class="yolo-carousel mb-8" data-testid="carousel-test" data-autoplay="true">
+  <div class="carousel-container relative h-80 lg:h-96">
+    <div class="carousel-slide absolute inset-0 flex items-center justify-center p-8" data-slide="0">
+      <div class="text-center max-w-md">
+        <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon" data-testid="carousel-icon-1">🚀</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text" data-testid="carousel-title-1">Test Slide 1</h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in" data-testid="carousel-desc-1">Testing GSAP carousel functionality with smooth transitions.</p>
+      </div>
+    </div>
+    <div class="carousel-slide absolute inset-0 flex items-center justify-center p-8" data-slide="1">
+      <div class="text-center max-w-md">
+        <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon" data-testid="carousel-icon-2">⚡</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text" data-testid="carousel-title-2">Test Slide 2</h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in" data-testid="carousel-desc-2">Verifying navigation arrows and indicator functionality.</p>
+      </div>
+    </div>
+    <div class="carousel-slide absolute inset-0 flex items-center justify-center p-8" data-slide="2">
+      <div class="text-center max-w-md">
+        <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-yolo-blue to-yolo-accent rounded-full flex items-center justify-center text-2xl text-white animate-icon" data-testid="carousel-icon-3">🎨</div>
+        <h3 class="text-2xl font-bold text-gray-900 mb-4 reveal-text" data-testid="carousel-title-3">Test Slide 3</h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in" data-testid="carousel-desc-3">Testing autoplay and pause on hover features.</p>
+      </div>
+    </div>
+  </div>
+  
+  <button class="carousel-prev absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-yolo-accent hover:bg-white transition-all duration-200 hover:scale-110" data-testid="carousel-prev">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  
+  <button class="carousel-next absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:text-yolo-accent hover:bg-white transition-all duration-200 hover:scale-110" data-testid="carousel-next">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
+  <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+    <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-200 bg-yolo-accent shadow-lg active" data-slide="0" data-testid="carousel-indicator-0"></button>
+    <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-200 bg-white/60 hover:bg-white/80" data-slide="1" data-testid="carousel-indicator-1"></button>
+    <button class="carousel-indicator w-3 h-3 rounded-full transition-all duration-200 bg-white/60 hover:bg-white/80" data-slide="2" data-testid="carousel-indicator-2"></button>
+  </div>
+
+  <div class="absolute bottom-0 left-0 w-full h-1 bg-gray-200">
+    <div class="carousel-progress h-full bg-gradient-to-r from-yolo-accent to-yolo-light-blue transform origin-left scale-x-0" data-testid="carousel-progress"></div>
+  </div>
+</div>
+
+## Logo Marquee Test
+
+<div class="logo-marquee relative overflow-hidden py-8 mb-8" data-testid="logo-marquee">
+  <div class="marquee-container flex items-center" data-speed="medium" data-direction="left" data-pause-hover="true">
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300" data-testid="logo-item-0">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">TechCorp</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300" data-testid="logo-item-1">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">DataFlow</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300" data-testid="logo-item-2">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">CloudSys</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300" data-testid="logo-item-3">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">TestLab</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300" data-testid="logo-item-4">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">DevCorp</div>
+      </div>
+    </div>
+    <div class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300" data-testid="logo-item-5">
+      <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">NextGen</div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+  <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
 </div>
 
 ## Hover Effects Tests
@@ -257,6 +351,7 @@ This page tests our comprehensive Yolo design system.
 ---
 
 <script src="/src/scripts/animations.js"></script>
+<script src="/src/scripts/gsap-animations.js"></script>
 
 ## Test Summary
 
@@ -266,8 +361,12 @@ This page validates:
 - ✅ Component library functionality
 - ✅ Responsive grid systems
 - ✅ Glass and gradient effects
-- ✅ Animation system
-- ✅ Hover interactions
+- ✅ **GSAP Animation system** with ScrollTrigger
+- ✅ **Carousel component** with autoplay, navigation, and indicators
+- ✅ **Logo marquee** with infinite scroll and pause on hover
+- ✅ **Counter animations** with number counting effects
+- ✅ **Enhanced hover interactions** with GSAP
+- ✅ **Progressive enhancement** with CSS fallbacks
 - ✅ Enhanced navigation component with dropdowns
 - ✅ Mobile responsive navigation
 - ✅ Accessibility features

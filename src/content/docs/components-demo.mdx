@@ -43,6 +43,14 @@ Our Phase 3 implementation includes:
 - **Logo and brand integration** with gradient accent colors
 - **Accessibility features** - keyboard navigation and ARIA labels
 
+### ✅ GSAP Animation Integration (NEW)
+- **Advanced scroll-triggered animations** with ScrollTrigger
+- **Carousel/Slider components** with smooth GSAP transitions
+- **Logo marquee animations** with infinite scrolling
+- **Counter animations** with number counting effects
+- **Progressive enhancement** - CSS fallbacks when GSAP unavailable
+- **Performance optimized** with will-change properties
+
 ## Live Examples
 
 All these components are production-ready and can be viewed in action:
@@ -87,6 +95,59 @@ import FeatureCard from '../components/FeatureCard.astro';
     iconColor="success"
   />
 </FeatureGrid>
+```
+
+### GSAP Animation Examples
+
+#### Carousel Component
+```astro
+<YoloCarousel 
+  slides={[
+    {
+      title: "Advanced Analytics",
+      description: "Get deep insights into your data with our comprehensive analytics platform.",
+      icon: "📊",
+      link: "/analytics/"
+    },
+    {
+      title: "Machine Learning",
+      description: "Deploy ML models at scale with our optimized inference engine.",
+      icon: "🤖", 
+      link: "/ml/"
+    },
+    {
+      title: "Real-time Processing",
+      description: "Process data streams in real-time with low latency guarantees.",
+      icon: "⚡",
+      link: "/realtime/"
+    }
+  ]}
+  autoplay={true}
+  showIndicators={true}
+  showNavigation={true}
+/>
+```
+
+#### Logo Marquee
+```astro
+<LogoMarquee 
+  logos={[
+    {name: "TechCorp", src: "/logos/techcorp.svg", alt: "TechCorp"},
+    {name: "DataFlow", src: "/logos/dataflow.svg", alt: "DataFlow"},
+    {name: "CloudSys", src: "/logos/cloudsys.svg", alt: "CloudSys"}
+  ]}
+  speed="medium"
+  direction="left"
+  pauseOnHover={true}
+/>
+```
+
+#### Animation Utilities
+```javascript
+// Use GSAP utilities directly in your components
+YoloAnimations.fadeIn(element, 0.5);
+YoloAnimations.slideIn(element, 'left', 0.2);
+YoloAnimations.scaleIn(element, 0.8);
 ```
 
 ### Advanced Examples
@@ -140,10 +201,11 @@ import FeatureCard from '../components/FeatureCard.astro';
 All components adapt beautifully to any screen size with mobile-first design principles.
 
 ### ⚡ **Performance Optimized**
-- Lazy loading animations
-- Efficient scroll listeners
-- Minimal JavaScript overhead
-- CSS-based animations where possible
+- **GSAP-powered animations** with hardware acceleration
+- **Progressive enhancement** with CSS fallbacks
+- **Efficient scroll listeners** using ScrollTrigger
+- **Lazy loading animations** triggered on viewport entry
+- **Minimal JavaScript overhead** with optimized GSAP usage
 
 ### 🎨 **Design System Integration**
 - Consistent with Yolo design tokens
@@ -187,6 +249,9 @@ All required components have been implemented with additional features:
 | Stats Counters | ✅ Complete | Scroll animations, grid layouts |
 | CTA Sections | ✅ Complete | Background effects, flexible layouts |
 | Navigation | ✅ Complete | Mobile menu, scroll effects |
+| **GSAP Animations** | ✅ Complete | **Advanced scroll triggers, carousels, marquees** |
+| **YoloCarousel** | ✅ Complete | **Auto-play, navigation, indicators, progress** |
+| **LogoMarquee** | ✅ Complete | **Infinite scroll, pause on hover, speed control** |
 
 ### Next Steps
 
