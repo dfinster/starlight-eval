@@ -1,0 +1,203 @@
+---
+// Enhanced Navigation Component
+interface Props {
+  logo?: {text: string, href: string};
+  menuItems?: Array<{text: string, href: string, active?: boolean}>;
+  transparent?: boolean;
+  className?: string;
+}
+
+const { 
+  logo = {text: 'Yolo', href: '/'},
+  menuItems = [
+    {text: 'Home', href: '/', active: true},
+    {text: 'Design System', href: '/design-system/'},
+    {text: 'Components', href: '/test-tailwind/'},
+    {text: 'Guides', href: '/guides/example/'}
+  ],
+  transparent = false,
+  className = ''
+} = Astro.props;
+---
+
+<nav 
+  class={`fixed top-0 w-full z-50 transition-all duration-300 ${transparent ? 'bg-transparent' : 'bg-white/90 backdrop-blur-md shadow-sm'} ${className}`} 
+  id="main-nav"
+>
+  <div class="container-custom">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <a 
+        href={logo.href}
+        class="flex items-center space-x-2 font-bold text-xl lg:text-2xl text-yolo-blue hover:text-yolo-blue/80 transition-colors duration-200"
+      >
+        <div class="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-yolo-blue to-yolo-light-blue rounded-lg flex items-center justify-center text-white font-bold">
+          Y
+        </div>
+        <span>{logo.text}</span>
+      </a>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        {menuItems.map(item => (
+          <a 
+            href={item.href}
+            class={`relative font-medium transition-all duration-200 group ${
+              item.active 
+                ? 'text-yolo-blue' 
+                : 'text-gray-700 hover:text-yolo-blue'
+            }`}
+          >
+            {item.text}
+            <div class={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-yolo-blue to-yolo-light-blue transform transition-transform duration-200 ${
+              item.active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+            }`}></div>
+          </a>
+        ))}
+        
+        <!-- CTA Button -->
+        <a 
+          href="/design-system/"
+          class="btn-primary btn-sm ml-4"
+        >
+          Get Started
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        class="md:hidden p-2 rounded-lg text-gray-700 hover:text-yolo-blue hover:bg-gray-100 transition-colors duration-200"
+        id="mobile-menu-button"
+        aria-label="Toggle mobile menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div 
+      class="md:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 bg-white border-t border-gray-100"
+      id="mobile-menu"
+    >
+      <div class="py-4 space-y-4">
+        {menuItems.map(item => (
+          <a 
+            href={item.href}
+            class={`block px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+              item.active 
+                ? 'text-yolo-blue bg-yolo-blue/10' 
+                : 'text-gray-700 hover:text-yolo-blue hover:bg-gray-50'
+            }`}
+          >
+            {item.text}
+          </a>
+        ))}
+        <div class="px-4 pt-2">
+          <a 
+            href="/design-system/"
+            class="btn-primary w-full justify-center"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Navigation functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const nav = document.getElementById('main-nav');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (!nav || !mobileMenuButton || !mobileMenu) return;
+    
+    // Handle scroll effects
+    let lastScrollY = window.scrollY;
+    
+    const updateNavigation = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Add background when scrolled
+      if (currentScrollY > 50) {
+        nav.classList.remove('bg-transparent');
+        nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+      } else {
+        nav.classList.add('bg-transparent');
+        nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+      }
+      
+      // Hide/show navigation on scroll (optional)
+      if (Math.abs(currentScrollY - lastScrollY) > 10) {
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          nav.style.transform = 'translateY(-100%)';
+        } else {
+          nav.style.transform = 'translateY(0)';
+        }
+        lastScrollY = currentScrollY;
+      }
+    };
+    
+    // Throttled scroll handler
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateNavigation();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    // Mobile menu toggle
+    let mobileMenuOpen = false;
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenuOpen = !mobileMenuOpen;
+      
+      if (mobileMenuOpen) {
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        `;
+      } else {
+        mobileMenu.style.maxHeight = '0';
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        `;
+      }
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileMenuOpen && !nav.contains(e.target)) {
+        mobileMenuOpen = false;
+        mobileMenu.style.maxHeight = '0';
+        mobileMenuButton.innerHTML = `
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        `;
+      }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768 && mobileMenuOpen) {
+        mobileMenuOpen = false;
+        mobileMenu.style.maxHeight = '0';
+      }
+    });
+  });
+</script>
