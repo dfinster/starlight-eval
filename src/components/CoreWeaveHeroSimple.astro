@@ -1,0 +1,75 @@
+---
+// CoreWeave-inspired hero component - simplified
+---
+
+<div class="cw-hero">
+  <div class="cw-hero-content">
+    <div class="cw-hero-text">
+      <h1 class="cw-gradient-text">
+        Build Documentation That Performs
+      </h1>
+      <p class="cw-hero-tagline">
+        Create fast, accessible, and beautiful documentation websites with the power of Astro and Starlight.
+      </p>
+      <div class="cw-hero-actions">
+        <a href="/getting-started/" class="cw-button cw-button-primary">
+          Get Started
+        </a>
+        <a href="https://github.com/withastro/starlight" class="cw-button cw-button-outline">
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cw-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(39, 65, 231, 0.03) 0%, rgba(108, 161, 229, 0.05) 100%);
+}
+
+.cw-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.cw-hero-text h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.cw-hero-tagline {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sl-color-gray-5);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cw-hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .cw-hero {
+    padding: 3rem 0;
+  }
+  
+  .cw-hero-text h1 {
+    font-size: 2.5rem;
+  }
+}
+</style>

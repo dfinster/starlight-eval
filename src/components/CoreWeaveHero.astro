@@ -1,0 +1,250 @@
+---
+// CoreWeave-inspired hero component
+---
+
+<div class="cw-hero">
+  <div class="cw-hero-content">
+    <div class="cw-hero-text">
+      <h1 class="cw-gradient-text">
+        Build Documentation 
+        <br />That Performs
+      </h1>
+      <p class="cw-hero-tagline">
+        Create fast, accessible, and beautiful documentation websites with the power of Astro and Starlight. 
+        Experience enterprise-grade performance with developer-friendly simplicity.
+      </p>
+      <div class="cw-hero-actions">
+        <a href="/getting-started/" class="cw-button cw-button-primary">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://github.com/withastro/starlight" class="cw-button cw-button-outline">
+          View on GitHub
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="cw-hero-visual">
+      <div class="cw-hero-gradient-circle"></div>
+      <div class="cw-hero-code-preview">
+        <div class="cw-code-header">
+          <div class="cw-code-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <span class="cw-code-title">astro.config.mjs</span>
+        </div>
+        <pre class="cw-code-content"><code>import { defineConfig } from 'astro/config';
+import starlight from '@astrojs/starlight';
+
+export default defineConfig({
+  integrations: [
+    starlight({
+      title: 'My Docs',
+      social: {
+        github: 'https://github.com/withastro/starlight',
+      },
+    }),
+  ],
+});</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cw-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(39, 65, 231, 0.03) 0%, rgba(108, 161, 229, 0.05) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .cw-hero {
+  background: linear-gradient(135deg, rgba(39, 65, 231, 0.1) 0%, rgba(108, 161, 229, 0.05) 100%);
+}
+
+.cw-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.cw-hero-text h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.cw-hero-tagline {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sl-color-gray-5);
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+.cw-hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cw-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.cw-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cw-button-primary {
+  background: linear-gradient(135deg, var(--cw-primary-blue) 0%, var(--cw-primary-blue-hover) 100%);
+  color: white;
+}
+
+.cw-button-primary:hover {
+  background: linear-gradient(135deg, var(--cw-primary-blue-hover) 0%, var(--cw-light-blue) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(39, 65, 231, 0.3);
+}
+
+.cw-button-outline {
+  background: transparent;
+  color: var(--cw-primary-blue);
+  border-color: var(--cw-primary-blue);
+}
+
+.cw-button-outline:hover {
+  background: var(--cw-primary-blue);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.cw-hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cw-hero-gradient-circle {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, var(--cw-primary-blue) 0%, var(--cw-light-blue) 100%);
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.cw-hero-code-preview {
+  background: var(--sl-color-white);
+  border: 1px solid var(--sl-color-gray-3);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  z-index: 1;
+}
+
+[data-theme="dark"] .cw-hero-code-preview {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cw-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--sl-color-gray-1);
+  border-bottom: 1px solid var(--sl-color-gray-3);
+}
+
+[data-theme="dark"] .cw-code-header {
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.cw-code-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cw-code-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--sl-color-gray-4);
+}
+
+.cw-code-dots span:nth-child(1) { background: #ff5f57; }
+.cw-code-dots span:nth-child(2) { background: #ffbd2e; }
+.cw-code-dots span:nth-child(3) { background: #28ca42; }
+
+.cw-code-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sl-color-gray-5);
+}
+
+.cw-code-content {
+  padding: 1.5rem;
+  margin: 0;
+  background: transparent;
+  border: none;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--sl-color-gray-6);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@media (max-width: 768px) {
+  .cw-hero-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .cw-hero-actions {
+    justify-content: center;
+  }
+  
+  .cw-button {
+    flex: 1;
+    justify-content: center;
+    min-width: 140px;
+  }
+}
+</style>

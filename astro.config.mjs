@@ -67,7 +67,10 @@ export default defineConfig({
 					attrs: { property: 'og:image:alt', content: ogImageAlt },
 				},
 			],
-			customCss: ['./src/assets/landing.css'],
+			customCss: [
+				'./src/assets/landing.css',
+				'./src/styles/coreweave-theme-simple.css'
+			],
 			locales,
 			sidebar: [
 				{
