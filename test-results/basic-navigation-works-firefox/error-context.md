@@ -1,0 +1,54 @@
+# Page snapshot
+
+```yaml
+- link "Skip to content":
+  - /url: "#_top"
+- banner:
+  - link "Yolo Design System":
+    - /url: /
+  - button "Search": ⌘ K
+  - link "GitHub":
+    - /url: https://github.com/withastro/starlight
+  - text: Select theme
+  - combobox "Select theme":
+    - option "Dark"
+    - option "Light"
+    - option "Auto" [selected]
+- main:
+  - heading "Welcome to Starlight" [level=1]
+  - text: Congrats on setting up a new Starlight project!
+  - link "See the Yolo Design System":
+    - /url: ./design-system
+  - link "Read the Starlight docs":
+    - /url: https://starlight.astro.build
+  - heading "Next steps" [level=2]
+  - link "Section titled “Next steps”":
+    - /url: "#next-steps"
+  - article:
+    - paragraph: Update content
+    - paragraph:
+      - text: Edit
+      - code: src/content/docs/index.mdx
+      - text: to see this page change.
+  - article:
+    - paragraph: Add new content
+    - paragraph:
+      - text: Add Markdown or MDX files to
+      - code: src/content/docs
+      - text: to create new pages.
+  - article:
+    - paragraph: Configure your site
+    - paragraph:
+      - text: Edit your
+      - code: sidebar
+      - text: and other config in
+      - code: astro.config.mjs
+      - text: .
+  - article:
+    - paragraph: Read the docs
+    - paragraph:
+      - text: Learn more in
+      - link "the Starlight Docs":
+        - /url: https://starlight.astro.build/
+      - text: .
+```

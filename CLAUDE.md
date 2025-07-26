@@ -4,76 +4,84 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the standalone Starlight documentation website built with Astro. It showcases Starlight's capabilities while serving as comprehensive documentation for the framework. The site supports 14+ languages and demonstrates advanced Astro/Starlight features.
+This is a Starlight documentation site called "Yolo Design System" built with Astro. It's a clean slate evaluation project designed to showcase rapid development capabilities using Starlight and includes a comprehensive UI component library with Tailwind CSS styling.
 
-## Essential Commands
+## Development Commands
 
-**Development:**
-```bash
-npm run dev          # Start development server
-npm run typecheck    # Run TypeScript validation
-npm run test         # Run Playwright accessibility tests (installs deps automatically)
-```
+- `npm run dev` - Start development server on http://localhost:4321
+- `npm run build` - Build for production 
+- `npm run preview` - Preview production build
+- `npm test` - Run Playwright tests across all browsers
+- `npm run test:headed` - Run tests with browser UI visible
+- `npm run test:ui` - Run tests with Playwright UI mode
 
-**Production:**
-```bash
-npm run build        # Build for production
-npm run preview      # Preview production build locally
-npm run linkcheck    # Build with link validation enabled
-```
+## Testing
 
-**Specialized:**
-```bash
-npm run lunaria:build    # Build i18n translation dashboard
-npm run grammars         # Generate syntax highlighting grammars
-```
+The project uses Playwright for end-to-end testing with cross-browser support (Chromium, Firefox, WebKit). Tests are located in `/tests/` and include:
+
+- `basic.test.js` - Basic homepage and navigation tests
+- `components.test.js` - Comprehensive component testing including hero sections, feature cards, animations, and responsive design
+
+Tests automatically start the dev server and run against `http://localhost:4321`. Test results are stored in `/test-results/` with HTML reports in `/playwright-report/`.
 
 ## Architecture
 
-**Content Structure:**
-- `src/content/docs/` - Documentation in MDX format, mirrored across 14+ language directories
-- `src/content/i18n/` - Translation files (JSON) for UI strings
-- Content collections defined in `src/content.config.ts` using Starlight's schema loaders
+### Astro + Starlight Configuration
+- **astro.config.mjs**: Main configuration with Starlight integration, custom CSS, and Google Fonts
+- **tailwind.config.mjs**: Extended Tailwind config with Yolo Design System tokens, animations, and utilities
+- **src/styles/global.css**: Comprehensive design system with CSS layers for components and utilities
 
-**Key Directories:**
-- `src/components/` - Custom Astro components including theme designer, showcase grids, and interactive previews
-- `src/assets/` - Static assets organized by type (logos, hero images, showcase screenshots, testimonial photos, theme previews)
-- `grammars/` - Custom TextMate syntax highlighting grammars with generation script
-- `lunaria/` - i18n tooling configuration and custom styling
-- `__a11y__/` - Accessibility testing suite using Playwright + axe
+### Component Library
+Components are located in `src/components/` and follow a modular architecture:
 
-**Configuration:**
-- `astro.config.mjs` - Main config with extensive i18n setup, Netlify deployment, and Starlight integration
-- `lunaria.config.json` - Translation progress tracking configuration
-- `netlify.toml` - Deployment configuration for Netlify
+- **Hero.astro**: Full-screen hero sections with gradients, animations, and CTA buttons
+- **FeatureGrid.astro**: Flexible grid container for feature cards with responsive layouts
+- **FeatureCard.astro**: Individual feature cards with icons, hover effects, and animations
+- **CTASection.astro**: Call-to-action sections with gradient and glass effect variants
+- **StatsGrid.astro**: Statistics display with animated counters
+- **StatCounter.astro**: Individual counter components with scroll-triggered animations
+- **Navigation.astro**: Site navigation component
 
-## Development Patterns
+### Content Structure
+- **src/content/docs/**: Documentation pages using MDX format
+- **src/content.config.ts**: Content collection configuration
+- Content includes design system documentation, component demos, and test suites
 
-**Internationalization:**
-- All content must be mirrored across supported language directories
-- UI translations go in `src/content/i18n/{locale}.json`
-- Lunaria tracks translation progress and generates dashboards
+### Styling System
+The project uses a comprehensive design system built on Tailwind CSS:
 
-**Testing:**
-- Accessibility testing is mandatory - run `npm run test` before commits
-- Tests use Playwright to validate entire site against WCAG standards
-- Link validation available via `CHECK_LINKS=true` environment variable
+- **Yolo Brand Colors**: Primary blue palette (#2741E7, #6CA1E5) with gradients
+- **Typography**: Plus Jakarta Sans for headings/body, Inconsolata for code
+- **Component Classes**: Button variants, card styles, badges, icons with hover effects
+- **Animation System**: Fade-in, slide, scale, and scroll-triggered animations
+- **Glass Effects**: Backdrop blur utilities for modern UI elements
+- **Responsive Grid**: Auto-fit, feature cards, stats, and testimonial layouts
 
-**Content Guidelines:**
-- Documentation files use MDX format with Starlight components
-- Component examples should include interactive previews where possible
-- Showcase entries require screenshots in `src/assets/showcase/`
+### JavaScript Functionality
+- Scroll-triggered animations using Intersection Observer API
+- Counter animations with CSS custom properties
+- Staggered entrance animations for component groups
+- Mobile-responsive behavior adaptations
 
-**Build Artifacts:**
-- `.astro/` directory contains auto-generated files and should remain in `.gitignore`
-- `dist/` contains build output for deployment
+## Key Design Patterns
 
-## Special Features
+1. **Animation-First Approach**: Components include built-in animations with stagger delays and scroll triggers
+2. **Responsive by Default**: All components adapt from mobile-first to desktop layouts
+3. **Design Token System**: Consistent spacing, colors, shadows, and typography scales
+4. **Glass Morphism**: Modern UI with backdrop blur and transparency effects
+5. **Gradient Branding**: Extensive use of brand gradients for visual hierarchy
 
-**Theme Designer:** Interactive color palette editor in `src/components/theme-designer/` with real-time preview capabilities.
+## File Naming Conventions
 
-**Multi-language Routing:** Automatic locale detection and routing configured in Astro config with comprehensive sidebar translations.
+- Components use PascalCase with `.astro` extension
+- Utility CSS classes use kebab-case with semantic naming
+- Content files use kebab-case with `.md` or `.mdx` extensions
+- Test files use kebab-case with `.test.js` extension
 
-**Component Showcase:** Living examples of Starlight components with copy-paste code snippets.
+## Development Notes
 
-**Custom Grammars:** TextMate grammar generation for enhanced syntax highlighting of specialized formats like Markdoc.
+- The project integrates Starlight's theming with custom Yolo branding
+- CSS architecture uses Tailwind's layer system for proper specificity
+- Components are designed to be reusable with props for customization
+- Animation performance is optimized with CSS transforms and opacity changes
+- Testing covers component functionality, responsive design, and animation systems

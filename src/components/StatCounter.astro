@@ -1,0 +1,140 @@
+---
+// Statistics Counter Component
+interface Props {
+  value: number;
+  label: string;
+  suffix?: string;
+  prefix?: string;
+  duration?: number;
+  animationDelay?: number;
+  variant?: 'default' | 'large' | 'compact';
+  color?: 'primary' | 'white' | 'dark';
+}
+
+const { 
+  value, 
+  label, 
+  suffix = '', 
+  prefix = '',
+  duration = 2000,
+  animationDelay = 0,
+  variant = 'default',
+  color = 'primary'
+} = Astro.props;
+
+const sizeClasses = {
+  default: 'text-4xl md:text-6xl',
+  large: 'text-5xl md:text-7xl lg:text-8xl',
+  compact: 'text-2xl md:text-3xl'
+};
+
+const colorClasses = {
+  primary: 'text-yolo-blue',
+  white: 'text-white',
+  dark: 'text-gray-900'
+};
+
+const labelColorClasses = {
+  primary: 'text-gray-600',
+  white: 'text-blue-100',
+  dark: 'text-gray-700'
+};
+---
+
+<div 
+  class={`text-center animate-fade-in`}
+  style={animationDelay ? `animation-delay: ${animationDelay}ms` : ''}
+>
+  <!-- Counter Value -->
+  <div class={`${sizeClasses[variant]} font-bold ${colorClasses[color]} mb-2 relative`}>
+    <span class="counter-prefix">{prefix}</span>
+    <span 
+      class="counter" 
+      data-target={value}
+      data-duration={duration}
+      data-prefix={prefix}
+      data-suffix={suffix}
+    >
+      0
+    </span>
+    <span class="counter-suffix">{suffix}</span>
+    
+    <!-- Animated underline -->
+    <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-yolo-blue to-yolo-light-blue rounded-full opacity-0 scale-x-0 transition-all duration-500 counter-underline"></div>
+  </div>
+  
+  <!-- Label -->
+  <div class={`text-lg md:text-xl font-medium ${labelColorClasses[color]} leading-tight`}>
+    {label}
+  </div>
+</div>
+
+<script>
+  // Counter animation function
+  function animateCounter(element, target, duration = 2000, prefix = '', suffix = '') {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const startTime = Date.now();
+    
+    const timer = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Use easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOutQuart * target);
+      
+      element.textContent = current.toLocaleString();
+      
+      if (progress >= 1) {
+        element.textContent = target.toLocaleString();
+        clearInterval(timer);
+        
+        // Show underline after counter completes
+        const underline = element.parentElement.querySelector('.counter-underline');
+        if (underline) {
+          underline.style.opacity = '1';
+          underline.style.transform = 'translateX(-50%) scaleX(1)';
+        }
+      }
+    }, 16);
+  }
+  
+  // Initialize counters when they come into view
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof IntersectionObserver !== 'undefined') {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target.querySelector('.counter');
+            if (counter && !counter.classList.contains('animated')) {
+              counter.classList.add('animated');
+              
+              const target = parseInt(counter.dataset.target);
+              const duration = parseInt(counter.dataset.duration) || 2000;
+              const prefix = counter.dataset.prefix || '';
+              const suffix = counter.dataset.suffix || '';
+              
+              // Add small delay for better UX
+              setTimeout(() => {
+                animateCounter(counter, target, duration, prefix, suffix);
+              }, 200);
+              
+              counterObserver.unobserve(entry.target);
+            }
+          }
+        });
+      }, {
+        threshold: 0.7,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      const statCounters = document.querySelectorAll('[data-target]').forEach(counter => {
+        const parent = counter.closest('div');
+        if (parent) {
+          counterObserver.observe(parent);
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,81 @@
+---
+// Feature Grid Container Component
+interface Props {
+  title?: string;
+  subtitle?: string;
+  columns?: 'auto' | '2' | '3' | '4';
+  className?: string;
+}
+
+const { 
+  title, 
+  subtitle, 
+  columns = '3',
+  className = ''
+} = Astro.props;
+
+const gridClasses = {
+  'auto': 'grid-auto-fit',
+  '2': 'grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8',
+  '3': 'grid-feature-cards',
+  '4': 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8'
+};
+---
+
+<section class={`section-spacing ${className}`}>
+  <div class="container-custom">
+    <!-- Section Header -->
+    {(title || subtitle) && (
+      <div class="text-center mb-12 lg:mb-16">
+        {title && (
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 animate-fade-in">
+            <span class="text-gradient">{title}</span>
+          </h2>
+        )}
+        {subtitle && (
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in animate-stagger-1">
+            {subtitle}
+          </p>
+        )}
+      </div>
+    )}
+    
+    <!-- Feature Cards Grid -->
+    <div class={`${gridClasses[columns]} animate-fade-in animate-stagger-2`}>
+      <slot />
+    </div>
+  </div>
+</section>
+
+<script>
+  // Initialize grid animations
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            
+            // Stagger animation for child elements
+            const children = entry.target.querySelectorAll('.animate-fade-in');
+            children.forEach((child, index) => {
+              setTimeout(() => {
+                child.classList.add('animate-in');
+              }, index * 150);
+            });
+            
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+      
+      const featureGrids = document.querySelectorAll('section');
+      featureGrids.forEach(grid => {
+        observer.observe(grid);
+      });
+    }
+  });
+</script>

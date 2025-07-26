@@ -1,0 +1,112 @@
+---
+// Feature Card Component
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  link?: string;
+  animationDelay?: number;
+  variant?: 'default' | 'elevated' | 'gradient' | 'glass';
+  iconColor?: 'primary' | 'secondary' | 'success' | 'gradient';
+}
+
+const { 
+  icon, 
+  title, 
+  description, 
+  link, 
+  animationDelay = 0,
+  variant = 'default',
+  iconColor = 'primary'
+} = Astro.props;
+
+const cardClasses = {
+  default: 'card-feature group',
+  elevated: 'card-elevated group',
+  gradient: 'card-gradient group',
+  glass: 'glass-card group'
+};
+
+const iconClasses = {
+  primary: 'icon-primary',
+  secondary: 'icon-secondary', 
+  success: 'icon-success',
+  gradient: 'icon-gradient'
+};
+---
+
+<div 
+  class={`${cardClasses[variant]} animate-fade-in hover-lift`}
+  style={animationDelay ? `animation-delay: ${animationDelay}ms` : ''}
+>
+  <!-- Icon Container -->
+  <div class={`${iconClasses[iconColor]} icon-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
+    <span class="text-2xl" role="img" aria-label={`${title} icon`}>
+      {icon}
+    </span>
+  </div>
+  
+  <!-- Content -->
+  <div class="space-y-4">
+    <!-- Title -->
+    <h3 class={`text-xl font-semibold leading-tight ${variant === 'gradient' ? 'text-white' : 'text-gray-900'} group-hover:text-yolo-blue transition-colors duration-300`}>
+      {title}
+    </h3>
+    
+    <!-- Description -->
+    <p class={`leading-relaxed ${variant === 'gradient' ? 'text-blue-100' : 'text-gray-600'} group-hover:text-gray-700 transition-colors duration-300`}>
+      {description}
+    </p>
+    
+    <!-- Link (if provided) -->
+    {link && (
+      <div class="pt-2">
+        <a 
+          href={link}
+          class={`inline-flex items-center gap-2 font-medium transition-all duration-200 group/link ${
+            variant === 'gradient' 
+              ? 'text-white hover:text-blue-100' 
+              : 'text-yolo-blue hover:text-yolo-blue/80'
+          }`}
+        >
+          <span>Learn more</span>
+          <svg 
+            class="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    )}
+  </div>
+  
+  <!-- Hover Gradient Effect -->
+  <div class="absolute inset-0 bg-gradient-to-br from-yolo-blue/5 to-yolo-light-blue/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+</div>
+
+<script>
+  // Initialize feature card animations on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      const featureCards = document.querySelectorAll('.card-feature, .card-elevated, .card-gradient, .glass-card');
+      featureCards.forEach(card => {
+        observer.observe(card);
+      });
+    }
+  });
+</script>
