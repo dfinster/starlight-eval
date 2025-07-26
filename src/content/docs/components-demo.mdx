@@ -35,11 +35,13 @@ Our Phase 3 implementation includes:
 - Animated backgrounds and effects
 - Flexible alignment options
 
-### ✅ Navigation Component
-- Responsive mobile menu
-- Scroll-based background changes
-- Smooth animations and transitions
-- Logo and brand integration
+### ✅ Navigation Component (Enhanced)
+- **Advanced dropdown menus** with descriptions and hover effects
+- **Responsive mobile menu** with collapsible dropdowns
+- **Smart scroll behavior** - hides on scroll down, shows on scroll up
+- **Enhanced animations** and smooth transitions
+- **Logo and brand integration** with gradient accent colors
+- **Accessibility features** - keyboard navigation and ARIA labels
 
 ## Live Examples
 
@@ -111,6 +113,24 @@ import FeatureCard from '../components/FeatureCard.astro';
   primaryButton={{text: "Start Building", href: "/start/"}}
   secondaryButton={{text: "View Docs", href: "/docs/"}}
   background="gradient"
+/>
+```
+
+#### Enhanced Navigation
+```astro
+<Navigation 
+  menuItems={[
+    {text: 'Home', href: '/'},
+    {
+      text: 'Solutions', 
+      dropdown: [
+        {text: 'AI Inference', href: '/solutions/ai-inference/', description: 'High-performance AI model inference'},
+        {text: 'Cloud Computing', href: '/solutions/cloud/', description: 'Flexible cloud infrastructure'}
+      ]
+    },
+    {text: 'About', href: '/about/'}
+  ]}
+  transparent={false}
 />
 ```
 

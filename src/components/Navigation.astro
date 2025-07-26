@@ -1,8 +1,15 @@
 ---
-// Enhanced Navigation Component
+// Advanced Navigation Component - CoreWeave Style
+interface MenuItem {
+  text: string;
+  href?: string;
+  active?: boolean;
+  dropdown?: Array<{text: string, href: string, description?: string}>;
+}
+
 interface Props {
   logo?: {text: string, href: string};
-  menuItems?: Array<{text: string, href: string, active?: boolean}>;
+  menuItems?: Array<MenuItem>;
   transparent?: boolean;
   className?: string;
 }
@@ -11,9 +18,26 @@ const {
   logo = {text: 'Yolo', href: '/'},
   menuItems = [
     {text: 'Home', href: '/', active: true},
-    {text: 'Design System', href: '/design-system/'},
-    {text: 'Components', href: '/test-tailwind/'},
-    {text: 'Guides', href: '/guides/example/'}
+    {
+      text: 'Solutions', 
+      dropdown: [
+        {text: 'AI Inference', href: '/solutions/ai-inference/', description: 'High-performance AI model inference'},
+        {text: 'Machine Learning', href: '/solutions/ml/', description: 'Scalable ML training and deployment'},
+        {text: 'Cloud Computing', href: '/solutions/cloud/', description: 'Flexible cloud infrastructure'},
+        {text: 'Data Analytics', href: '/solutions/analytics/', description: 'Advanced data processing tools'}
+      ]
+    },
+    {
+      text: 'Resources',
+      dropdown: [
+        {text: 'Documentation', href: '/design-system/', description: 'Comprehensive guides and tutorials'},
+        {text: 'Component Demo', href: '/components-demo/', description: 'Live component demonstrations'},
+        {text: 'Test Suite', href: '/test-tailwind/', description: 'Testing and validation tools'},
+        {text: 'API Reference', href: '/reference/example/', description: 'Complete API documentation'}
+      ]
+    },
+    {text: 'About', href: '/about/', active: false},
+    {text: 'Contact', href: '/contact/', active: false}
   ],
   transparent = false,
   className = ''
@@ -21,44 +45,89 @@ const {
 ---
 
 <nav 
-  class={`fixed top-0 w-full z-50 transition-all duration-300 ${transparent ? 'bg-transparent' : 'bg-white/90 backdrop-blur-md shadow-sm'} ${className}`} 
+  class={`fixed top-0 w-full z-50 transition-all duration-300 ${transparent ? 'bg-transparent' : 'bg-white/95 backdrop-blur-lg shadow-sm border-b border-gray-100'} ${className}`} 
   id="main-nav"
+  data-testid="main-navigation"
 >
   <div class="container-custom">
-    <div class="flex items-center justify-between h-16 lg:h-20">
+    <div class="flex items-center justify-between h-16 lg:h-18">
       <!-- Logo -->
       <a 
         href={logo.href}
-        class="flex items-center space-x-2 font-bold text-xl lg:text-2xl text-yolo-blue hover:text-yolo-blue/80 transition-colors duration-200"
+        class="flex items-center space-x-3 font-bold text-xl lg:text-2xl text-yolo-blue hover:text-yolo-accent transition-colors duration-200"
+        data-testid="nav-logo"
       >
-        <div class="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-yolo-blue to-yolo-light-blue rounded-lg flex items-center justify-center text-white font-bold">
+        <div class="w-8 h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-yolo-blue via-yolo-accent to-yolo-light-blue rounded-lg flex items-center justify-center text-white font-bold text-sm lg:text-base shadow-sm">
           Y
         </div>
-        <span>{logo.text}</span>
+        <span class="hidden sm:inline">{logo.text}</span>
       </a>
       
       <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-8">
-        {menuItems.map(item => (
-          <a 
-            href={item.href}
-            class={`relative font-medium transition-all duration-200 group ${
-              item.active 
-                ? 'text-yolo-blue' 
-                : 'text-gray-700 hover:text-yolo-blue'
-            }`}
-          >
-            {item.text}
-            <div class={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-yolo-blue to-yolo-light-blue transform transition-transform duration-200 ${
-              item.active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-            }`}></div>
-          </a>
+      <div class="hidden lg:flex items-center space-x-1">
+        {menuItems.map((item, index) => (
+          item.dropdown ? (
+            <!-- Dropdown Menu Item -->
+            <div class="relative group" data-testid={`nav-dropdown-${index}`}>
+              <button 
+                class="flex items-center px-3 py-2 font-medium text-gray-700 hover:text-yolo-accent transition-colors duration-200 group-hover:text-yolo-accent"
+                data-dropdown-toggle={`dropdown-${index}`}
+              >
+                {item.text}
+                <svg class="ml-1 w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              
+              <!-- Dropdown Panel -->
+              <div 
+                class="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0"
+                id={`dropdown-${index}`}
+              >
+                <div class="p-2">
+                  {item.dropdown.map((dropdownItem, dropIndex) => (
+                    <a 
+                      href={dropdownItem.href}
+                      class="flex flex-col p-3 rounded-lg hover:bg-gray-50 transition-colors duration-150 group"
+                      data-testid={`dropdown-item-${index}-${dropIndex}`}
+                    >
+                      <span class="font-medium text-gray-900 group-hover:text-yolo-accent transition-colors duration-150">
+                        {dropdownItem.text}
+                      </span>
+                      {dropdownItem.description && (
+                        <span class="text-sm text-gray-500 mt-1">
+                          {dropdownItem.description}
+                        </span>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <!-- Regular Menu Item -->
+            <a 
+              href={item.href}
+              class={`relative px-3 py-2 font-medium transition-all duration-200 group ${
+                item.active 
+                  ? 'text-yolo-accent' 
+                  : 'text-gray-700 hover:text-yolo-accent'
+              }`}
+              data-testid={`nav-item-${index}`}
+            >
+              {item.text}
+              <div class={`absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-yolo-accent to-yolo-light-blue transform transition-transform duration-200 ${
+                item.active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+              }`}></div>
+            </a>
+          )
         ))}
         
         <!-- CTA Button -->
         <a 
           href="/design-system/"
-          class="btn-primary btn-sm ml-4"
+          class="btn-primary btn-sm ml-6"
+          data-testid="nav-cta"
         >
           Get Started
         </a>
@@ -66,11 +135,12 @@ const {
       
       <!-- Mobile Menu Button -->
       <button 
-        class="md:hidden p-2 rounded-lg text-gray-700 hover:text-yolo-blue hover:bg-gray-100 transition-colors duration-200"
+        class="lg:hidden p-2 rounded-lg text-gray-700 hover:text-yolo-accent hover:bg-gray-50 transition-all duration-200"
         id="mobile-menu-button"
         aria-label="Toggle mobile menu"
+        data-testid="mobile-menu-toggle"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menu-icon">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
@@ -78,26 +148,56 @@ const {
     
     <!-- Mobile Menu -->
     <div 
-      class="md:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 bg-white border-t border-gray-100"
+      class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 bg-white/95 backdrop-blur-lg border-t border-gray-100"
       id="mobile-menu"
+      data-testid="mobile-menu"
     >
-      <div class="py-4 space-y-4">
-        {menuItems.map(item => (
-          <a 
-            href={item.href}
-            class={`block px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-              item.active 
-                ? 'text-yolo-blue bg-yolo-blue/10' 
-                : 'text-gray-700 hover:text-yolo-blue hover:bg-gray-50'
-            }`}
-          >
-            {item.text}
-          </a>
+      <div class="py-4 space-y-2 max-h-96 overflow-y-auto">
+        {menuItems.map((item, index) => (
+          item.dropdown ? (
+            <!-- Mobile Dropdown -->
+            <div class="mobile-dropdown" data-testid={`mobile-dropdown-${index}`}>
+              <button 
+                class="w-full flex items-center justify-between px-4 py-3 font-medium text-gray-700 hover:text-yolo-accent hover:bg-gray-50 transition-colors duration-200"
+                data-mobile-dropdown={`mobile-dropdown-${index}`}
+              >
+                {item.text}
+                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <div class="pl-4 max-h-0 overflow-hidden transition-all duration-200" id={`mobile-dropdown-${index}-content`}>
+                {item.dropdown.map((dropdownItem, dropIndex) => (
+                  <a 
+                    href={dropdownItem.href}
+                    class="block px-4 py-2 text-sm text-gray-600 hover:text-yolo-accent hover:bg-gray-50 transition-colors duration-200"
+                    data-testid={`mobile-dropdown-item-${index}-${dropIndex}`}
+                  >
+                    {dropdownItem.text}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <!-- Mobile Regular Item -->
+            <a 
+              href={item.href}
+              class={`block px-4 py-3 font-medium transition-colors duration-200 ${
+                item.active 
+                  ? 'text-yolo-accent bg-yolo-accent/10' 
+                  : 'text-gray-700 hover:text-yolo-accent hover:bg-gray-50'
+              }`}
+              data-testid={`mobile-nav-item-${index}`}
+            >
+              {item.text}
+            </a>
+          )
         ))}
-        <div class="px-4 pt-2">
+        <div class="px-4 pt-4 border-t border-gray-100 mt-4">
           <a 
             href="/design-system/"
             class="btn-primary w-full justify-center"
+            data-testid="mobile-nav-cta"
           >
             Get Started
           </a>
@@ -108,41 +208,59 @@ const {
 </nav>
 
 <script>
-  // Navigation functionality
+  // Advanced Navigation functionality
   document.addEventListener('DOMContentLoaded', () => {
     const nav = document.getElementById('main-nav');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
     
-    if (!nav || !mobileMenuButton || !mobileMenu) return;
+    if (!nav || !mobileMenuButton || !mobileMenu || !menuIcon) return;
     
-    // Handle scroll effects
+    // State management
+    let mobileMenuOpen = false;
     let lastScrollY = window.scrollY;
+    let scrollTimeout;
     
+    // Enhanced scroll effects with smooth transitions
     const updateNavigation = () => {
       const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+      const scrollDistance = Math.abs(currentScrollY - lastScrollY);
       
-      // Add background when scrolled
-      if (currentScrollY > 50) {
+      // Add background when scrolled with enhanced blur
+      if (currentScrollY > 20) {
         nav.classList.remove('bg-transparent');
-        nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-      } else {
+        nav.classList.add('bg-white/95', 'backdrop-blur-lg', 'shadow-sm', 'border-b', 'border-gray-100');
+      } else if (currentScrollY < 10) {
         nav.classList.add('bg-transparent');
-        nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+        nav.classList.remove('bg-white/95', 'backdrop-blur-lg', 'shadow-sm', 'border-b', 'border-gray-100');
       }
       
-      // Hide/show navigation on scroll (optional)
-      if (Math.abs(currentScrollY - lastScrollY) > 10) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Smart hide/show navigation with improved logic
+      if (scrollDistance > 15) {
+        clearTimeout(scrollTimeout);
+        
+        if (scrollingDown && currentScrollY > 150 && !mobileMenuOpen) {
+          // Hide navigation when scrolling down
           nav.style.transform = 'translateY(-100%)';
-        } else {
+          nav.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        } else if (!scrollingDown || currentScrollY < 100) {
+          // Show navigation when scrolling up or near top
           nav.style.transform = 'translateY(0)';
+          nav.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         }
+        
+        // Auto-show after scroll stops
+        scrollTimeout = setTimeout(() => {
+          nav.style.transform = 'translateY(0)';
+        }, 1000);
+        
         lastScrollY = currentScrollY;
       }
     };
     
-    // Throttled scroll handler
+    // Optimized scroll handler with RAF
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -154,50 +272,118 @@ const {
       }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
-    // Mobile menu toggle
-    let mobileMenuOpen = false;
-    
-    mobileMenuButton.addEventListener('click', () => {
+    // Enhanced mobile menu toggle with animations
+    const toggleMobileMenu = () => {
       mobileMenuOpen = !mobileMenuOpen;
       
       if (mobileMenuOpen) {
-        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
-        mobileMenuButton.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
+        // Open mobile menu
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 20 + 'px';
+        mobileMenu.classList.add('shadow-lg');
+        menuIcon.style.transform = 'rotate(90deg)';
+        menuIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         `;
+        document.body.style.overflow = 'hidden'; // Prevent scroll
       } else {
+        // Close mobile menu
         mobileMenu.style.maxHeight = '0';
-        mobileMenuButton.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
+        mobileMenu.classList.remove('shadow-lg');
+        menuIcon.style.transform = 'rotate(0deg)';
+        menuIcon.innerHTML = `
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         `;
+        document.body.style.overflow = ''; // Restore scroll
+      }
+    };
+    
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+    
+    // Mobile dropdown functionality
+    const mobileDropdownButtons = document.querySelectorAll('[data-mobile-dropdown]');
+    mobileDropdownButtons.forEach((button, index) => {
+      const dropdownContent = document.getElementById(`mobile-dropdown-${index}-content`);
+      if (dropdownContent) {
+        let isOpen = false;
+        
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          isOpen = !isOpen;
+          
+          const chevron = button.querySelector('svg');
+          if (isOpen) {
+            dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
+            chevron.style.transform = 'rotate(180deg)';
+          } else {
+            dropdownContent.style.maxHeight = '0';
+            chevron.style.transform = 'rotate(0deg)';
+          }
+        });
       }
     });
     
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
+    // Enhanced outside click handling
+    const handleOutsideClick = (e) => {
       if (mobileMenuOpen && !nav.contains(e.target)) {
-        mobileMenuOpen = false;
-        mobileMenu.style.maxHeight = '0';
-        mobileMenuButton.innerHTML = `
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        `;
+        toggleMobileMenu();
+      }
+    };
+    
+    document.addEventListener('click', handleOutsideClick);
+    
+    // Improved keyboard navigation
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        toggleMobileMenu();
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    
+    // Enhanced resize handling with debounce
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (window.innerWidth >= 1024 && mobileMenuOpen) {
+          toggleMobileMenu();
+        }
+      }, 100);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Dropdown hover effects for desktop (enhanced)
+    const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle]');
+    dropdownTriggers.forEach((trigger) => {
+      const dropdownId = trigger.getAttribute('data-dropdown-toggle');
+      const dropdown = document.getElementById(dropdownId);
+      if (dropdown) {
+        let hoverTimeout;
+        
+        const showDropdown = () => {
+          clearTimeout(hoverTimeout);
+          dropdown.classList.remove('opacity-0', 'invisible', 'translate-y-2');
+          dropdown.classList.add('opacity-100', 'visible', 'translate-y-0');
+        };
+        
+        const hideDropdown = () => {
+          hoverTimeout = setTimeout(() => {
+            dropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+            dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+          }, 150);
+        };
+        
+        trigger.parentElement.addEventListener('mouseenter', showDropdown);
+        trigger.parentElement.addEventListener('mouseleave', hideDropdown);
+        dropdown.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
+        dropdown.addEventListener('mouseleave', hideDropdown);
       }
     });
     
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768 && mobileMenuOpen) {
-        mobileMenuOpen = false;
-        mobileMenu.style.maxHeight = '0';
-      }
-    });
+    // Initialize navigation state
+    updateNavigation();
   });
 </script>

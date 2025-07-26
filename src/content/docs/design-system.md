@@ -207,6 +207,36 @@ This page showcases our comprehensive design system built with Tailwind CSS and 
   </div>
 </div>
 
+## Navigation Components
+
+### Advanced Navigation Bar
+
+<div class="bg-white border rounded-lg p-4 mb-8">
+  <div class="flex items-center justify-between py-2">
+    <div class="flex items-center space-x-3">
+      <div class="w-8 h-8 bg-gradient-to-br from-yolo-blue via-yolo-accent to-yolo-light-blue rounded-lg flex items-center justify-center text-white font-bold text-sm">Y</div>
+      <span class="font-bold text-lg text-yolo-blue">Yolo</span>
+    </div>
+    <div class="hidden lg:flex items-center space-x-6">
+      <span class="text-gray-700 hover:text-yolo-accent cursor-pointer">Home</span>
+      <span class="text-gray-700 hover:text-yolo-accent cursor-pointer">Solutions ↓</span>
+      <span class="text-gray-700 hover:text-yolo-accent cursor-pointer">Resources ↓</span>
+      <span class="text-gray-700 hover:text-yolo-accent cursor-pointer">About</span>
+      <button class="btn-primary btn-sm">Get Started</button>
+    </div>
+    <div class="lg:hidden">
+      <button class="p-2 text-gray-700 hover:text-yolo-accent">☰</button>
+    </div>
+  </div>
+</div>
+
+### Key Features
+- **Dropdown Menus**: Hover-activated dropdowns with descriptions
+- **Mobile Responsive**: Collapsible hamburger menu with mobile dropdowns
+- **Smart Scroll**: Hides on scroll down, shows on scroll up
+- **Enhanced Animations**: Smooth transitions and hover effects
+- **Accessibility**: Full keyboard navigation and ARIA support
+
 ---
 
 This design system provides a comprehensive set of components and utilities for building beautiful, consistent user interfaces with the Yolo brand aesthetic.
