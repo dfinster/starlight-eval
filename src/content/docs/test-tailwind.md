@@ -12,6 +12,11 @@ This page tests our comprehensive Yolo design system.
   <p class="text-yolo-light-blue">Light blue text on primary blue background.</p>
 </div>
 
+<div class="bg-yolo-accent text-white p-6 rounded-lg mb-6" data-testid="accent-color-test">
+  <h2 class="text-2xl font-bold mb-2">Yolo Accent Background</h2>
+  <p class="text-yolo-light-blue">New accent color (#327cf8) implementation test.</p>
+</div>
+
 ## Component Library Tests
 
 ### Buttons
@@ -216,7 +221,7 @@ This page tests our comprehensive Yolo design system.
 ## Test Summary
 
 This page validates:
-- ✅ Color system integration
+- ✅ Color system integration (including new accent color #327cf8)
 - ✅ Typography and font loading
 - ✅ Component library functionality
 - ✅ Responsive grid systems

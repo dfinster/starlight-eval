@@ -15,6 +15,8 @@ export default {
         'yolo-dark-blue': '#1a202c',
         'yolo-gray': '#718096',
         'yolo-light-gray': '#f8f9fa',
+        'yolo-accent': '#327cf8',
+        'yolo-navy': '#1a202c',
         'success': '#10b981',
         'warning': '#f59e0b',
       },

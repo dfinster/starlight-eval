@@ -15,6 +15,12 @@ This page showcases our comprehensive design system built with Tailwind CSS and 
   </div>
 
   <div class="card text-center">
+    <div class="w-16 h-16 mx-auto mb-4 rounded-lg bg-yolo-accent"></div>
+    <h3 class="font-semibold">Yolo Accent</h3>
+    <p class="text-sm text-gray-600">#327CF8</p>
+  </div>
+
+  <div class="card text-center">
     <div class="w-16 h-16 mx-auto mb-4 rounded-lg bg-yolo-light-blue"></div>
     <h3 class="font-semibold">Yolo Light Blue</h3>
     <p class="text-sm text-gray-600">#6CA1E5</p>
