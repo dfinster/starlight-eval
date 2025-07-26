@@ -1,4 +1,8 @@
-# Starlight Documentation
+# Checkpoint
+
+This is a checkpoint branch used to park the current state of `main`. It's only intended to be a backup.
+
+## Starlight Documentation
 
 This is a standalone deployment of the official Starlight documentation, extracted from the [Starlight monorepo](https://github.com/withastro/starlight).
 
