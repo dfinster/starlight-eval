@@ -638,11 +638,11 @@
   }
 
   .gradient-bg-radial {
-    background: radial-gradient(circle at center, theme(colors.yolo-blue), theme(colors.yolo-light-blue));
+    background: radial-gradient(circle at center, #2741E7, #6CA1E5);
   }
 
   .gradient-bg-conic {
-    background: conic-gradient(from 0deg, theme(colors.yolo-blue), theme(colors.yolo-light-blue), theme(colors.yolo-blue));
+    background: conic-gradient(from 0deg, #2741E7, #6CA1E5, #2741E7);
   }
 
   /* Glass Effects */
