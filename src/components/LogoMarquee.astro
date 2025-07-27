@@ -1,0 +1,130 @@
+---
+// Logo Marquee Component with GSAP
+interface Logo {
+  name: string;
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  logos: Array<Logo>;
+  speed?: 'slow' | 'medium' | 'fast';
+  direction?: 'left' | 'right';
+  pauseOnHover?: boolean;
+  className?: string;
+}
+
+const { 
+  logos = [
+    { name: 'Partner 1', src: '/logos/partner1.svg', alt: 'Partner 1' },
+    { name: 'Partner 2', src: '/logos/partner2.svg', alt: 'Partner 2' },
+    { name: 'Partner 3', src: '/logos/partner3.svg', alt: 'Partner 3' },
+    { name: 'Partner 4', src: '/logos/partner4.svg', alt: 'Partner 4' },
+    { name: 'Partner 5', src: '/logos/partner5.svg', alt: 'Partner 5' },
+    { name: 'Partner 6', src: '/logos/partner6.svg', alt: 'Partner 6' }
+  ],
+  speed = 'medium',
+  direction = 'left',
+  pauseOnHover = true,
+  className = ''
+} = Astro.props;
+
+// Duplicate logos for seamless loop
+const duplicatedLogos = [...logos, ...logos];
+---
+
+<div class={`logo-marquee relative overflow-hidden py-8 ${className}`} data-testid="logo-marquee">
+  <div class="marquee-container flex items-center" data-speed={speed} data-direction={direction} data-pause-hover={pauseOnHover}>
+    {duplicatedLogos.map((logo, index) => (
+      <div 
+        class="marquee-item flex-shrink-0 mx-8 lg:mx-12 opacity-60 hover:opacity-100 transition-opacity duration-300"
+        data-testid={`logo-item-${index}`}
+      >
+        <div class="w-32 h-16 flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+          <!-- Placeholder for logo - in real implementation, use actual logo images -->
+          <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 rounded flex items-center justify-center text-gray-500 text-xs font-medium">
+            {logo.name}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <!-- Gradient Overlays -->
+  <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent pointer-events-none z-10"></div>
+  <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none z-10"></div>
+</div>
+
+<script>
+  import { gsap } from 'gsap';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const marquees = document.querySelectorAll('.logo-marquee');
+    
+    marquees.forEach((marquee) => {
+      const container = marquee.querySelector('.marquee-container');
+      const items = marquee.querySelectorAll('.marquee-item');
+      
+      if (!container || items.length === 0) return;
+      
+      const speed = (container as HTMLElement).dataset.speed || 'medium';
+      const direction = (container as HTMLElement).dataset.direction || 'left';
+      const pauseOnHover = (container as HTMLElement).dataset.pauseHover === 'true';
+      
+      // Calculate speeds
+      const speedMap = {
+        slow: 120,
+        medium: 80,
+        fast: 50
+      };
+      
+      const duration = speedMap[speed as keyof typeof speedMap];
+      const containerWidth = container.scrollWidth / 2; // Half because we duplicated
+      
+      // Set up infinite animation
+      gsap.set(container, { x: direction === 'left' ? 0 : -containerWidth });
+      
+      const tween = gsap.to(container, {
+        x: direction === 'left' ? -containerWidth : 0,
+        duration: duration,
+        ease: "none",
+        repeat: -1
+      });
+      
+      // Pause on hover if enabled
+      if (pauseOnHover) {
+        marquee.addEventListener('mouseenter', () => tween.pause());
+        marquee.addEventListener('mouseleave', () => tween.play());
+      }
+      
+      // Individual logo hover effects
+      items.forEach((item) => {
+        const hoverTween = gsap.to(item, {
+          scale: 1.05,
+          y: -5,
+          duration: 0.3,
+          ease: "back.out(1.7)",
+          paused: true
+        });
+        
+        item.addEventListener('mouseenter', () => hoverTween.play());
+        item.addEventListener('mouseleave', () => hoverTween.reverse());
+      });
+    });
+  });
+</script>
+
+<style>
+  .logo-marquee {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  
+  .marquee-container {
+    will-change: transform;
+  }
+  
+  .marquee-item {
+    will-change: transform;
+  }
+</style>

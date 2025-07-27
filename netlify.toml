@@ -1,20 +1,22 @@
 [build]
+  command = "npm run build"
   publish = "dist"
+
+[context.production]
   command = "npm run build"
 
-[build.environment]
-  NODE_VERSION = "18"
+[context.deploy-preview]
+  command = "npm run build"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[redirects]]
   from = "/*"
-  to = "/404.html"
+  to = "/404"
   status = 404
-
-[context.production]
-  environment = { CONTEXT = "production" }
-
-[context.deploy-preview]
-  environment = { CONTEXT = "deploy-preview" }
-
-[context.branch-deploy]
-  environment = { CONTEXT = "branch-deploy" }

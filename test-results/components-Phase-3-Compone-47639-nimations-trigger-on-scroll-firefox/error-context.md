@@ -1,0 +1,896 @@
+# Page snapshot
+
+```yaml
+- link "Skip to content":
+  - /url: "#_top"
+- banner:
+  - link "Yolo Design System":
+    - /url: /
+  - button "Search": ⌘ K
+  - link "GitHub":
+    - /url: https://github.com/withastro/starlight
+  - text: Select theme
+  - combobox "Select theme":
+    - option "Dark"
+    - option "Light"
+    - option "Auto" [selected]
+- navigation "Main":
+  - list:
+    - listitem:
+      - group:
+        - text: Design System
+        - list:
+          - listitem:
+            - link "Component Library":
+              - /url: /design-system/
+          - listitem:
+            - link "Live Demo":
+              - /url: /components-demo/
+          - listitem:
+            - link "Test Suite":
+              - /url: /test-tailwind/
+    - listitem:
+      - group:
+        - text: Guides
+        - list:
+          - listitem:
+            - link "Example Guide":
+              - /url: /guides/example/
+    - listitem:
+      - group:
+        - text: Reference
+        - list:
+          - listitem:
+            - link "Example Reference":
+              - /url: /reference/example/
+- complementary:
+  - navigation "On this page":
+    - heading "On this page" [level=2]
+    - list:
+      - listitem:
+        - link "Overview":
+          - /url: "#_top"
+      - listitem:
+        - link "Component Overview":
+          - /url: "#component-overview"
+        - list:
+          - listitem:
+            - link "✅ Hero Section Component":
+              - /url: "#-hero-section-component"
+          - listitem:
+            - link "✅ Feature Cards Component":
+              - /url: "#-feature-cards-component"
+          - listitem:
+            - link "✅ Statistics Counter Component":
+              - /url: "#-statistics-counter-component"
+          - listitem:
+            - link "✅ Call-to-Action Sections":
+              - /url: "#-call-to-action-sections"
+          - listitem:
+            - link "✅ Navigation Component (Enhanced)":
+              - /url: "#-navigation-component-enhanced"
+          - listitem:
+            - link "✅ GSAP Animation Integration (NEW)":
+              - /url: "#-gsap-animation-integration-new"
+          - listitem:
+            - link "✅ Filter System Component (NEW)":
+              - /url: "#-filter-system-component-new"
+          - listitem:
+            - link "✅ Resource Card Components (NEW)":
+              - /url: "#-resource-card-components-new"
+      - listitem:
+        - link "Live Component Demonstrations":
+          - /url: "#live-component-demonstrations"
+        - list:
+          - listitem:
+            - link "🎯 Hero Section Component":
+              - /url: "#-hero-section-component-1"
+          - listitem:
+            - link "⚡ Feature Cards Grid":
+              - /url: "#-feature-cards-grid"
+          - listitem:
+            - link "📈 Statistics Counter Section":
+              - /url: "#-statistics-counter-section"
+          - listitem:
+            - link "🎠 GSAP Carousel Component":
+              - /url: "#-gsap-carousel-component"
+          - listitem:
+            - link "🏢 Logo Marquee":
+              - /url: "#-logo-marquee"
+          - listitem:
+            - link "🔍 Advanced Filter System":
+              - /url: "#-advanced-filter-system"
+          - listitem:
+            - link "📚 Resource Cards Collection":
+              - /url: "#-resource-cards-collection"
+          - listitem:
+            - link "🎯 Call-to-Action Section":
+              - /url: "#-call-to-action-section"
+          - listitem:
+            - link "Basic Usage Examples":
+              - /url: "#basic-usage-examples"
+          - listitem:
+            - link "GSAP Animation Examples":
+              - /url: "#gsap-animation-examples"
+          - listitem:
+            - link "Advanced Examples":
+              - /url: "#advanced-examples"
+      - listitem:
+        - link "Component Features":
+          - /url: "#component-features"
+        - list:
+          - listitem:
+            - link "🎯 Fully Responsive":
+              - /url: "#-fully-responsive"
+          - listitem:
+            - link "⚡ Performance Optimized":
+              - /url: "#-performance-optimized"
+          - listitem:
+            - link "🎨 Design System Integration":
+              - /url: "#-design-system-integration"
+          - listitem:
+            - link "🔧 Developer Friendly":
+              - /url: "#-developer-friendly"
+          - listitem:
+            - link "♿ Accessibility Built-in":
+              - /url: "#-accessibility-built-in"
+      - listitem:
+        - link "Testing Coverage":
+          - /url: "#testing-coverage"
+      - listitem:
+        - link "Implementation Status":
+          - /url: "#implementation-status"
+        - list:
+          - listitem:
+            - link "Next Steps":
+              - /url: "#next-steps"
+      - listitem:
+        - link "Visual Comparison Analysis":
+          - /url: "#visual-comparison-analysis"
+        - list:
+          - listitem:
+            - link "Yolo Design Pattern Alignment":
+              - /url: "#yolo-design-pattern-alignment"
+          - listitem:
+            - link "Technical Implementation Matching":
+              - /url: "#technical-implementation-matching"
+          - listitem:
+            - link "Design Fidelity Assessment":
+              - /url: "#design-fidelity-assessment"
+          - listitem:
+            - link "Animation Performance":
+              - /url: "#animation-performance"
+- main:
+  - heading "Component Demo" [level=1]
+  - heading "Yolo Components Showcase" [level=1]
+  - link "Section titled “Yolo Components Showcase”":
+    - /url: "#yolo-components-showcase"
+  - paragraph: This page demonstrates all the components from our Phase 3 development in action.
+  - heading "Component Overview" [level=2]
+  - link "Section titled “Component Overview”":
+    - /url: "#component-overview"
+  - paragraph: "Our Phase 3 implementation includes:"
+  - heading "✅ Hero Section Component" [level=3]
+  - link "Section titled “✅ Hero Section Component”":
+    - /url: "#-hero-section-component"
+  - list:
+    - listitem: Full-screen hero with gradient backgrounds
+    - listitem: Animated text effects and CTA buttons
+    - listitem: Responsive design with mobile optimization
+    - listitem: Scroll indicators and floating elements
+  - heading "✅ Feature Cards Component" [level=3]
+  - link "Section titled “✅ Feature Cards Component”":
+    - /url: "#-feature-cards-component"
+  - list:
+    - listitem: Multiple variants (default, elevated, gradient, glass)
+    - listitem: Icon integration with hover effects
+    - listitem: Responsive grid layouts
+    - listitem: Animation on scroll
+  - heading "✅ Statistics Counter Component" [level=3]
+  - link "Section titled “✅ Statistics Counter Component”":
+    - /url: "#-statistics-counter-component"
+  - list:
+    - listitem: Animated number counting on scroll
+    - listitem: Multiple size variants and color schemes
+    - listitem: Responsive grid layouts
+    - listitem: Glass and gradient backgrounds
+  - heading "✅ Call-to-Action Sections" [level=3]
+  - link "Section titled “✅ Call-to-Action Sections”":
+    - /url: "#-call-to-action-sections"
+  - list:
+    - listitem: Multiple background styles (gradient, glass, pattern)
+    - listitem: Responsive button layouts
+    - listitem: Animated backgrounds and effects
+    - listitem: Flexible alignment options
+  - heading "✅ Navigation Component (Enhanced)" [level=3]
+  - link "Section titled “✅ Navigation Component (Enhanced)”":
+    - /url: "#-navigation-component-enhanced"
+  - list:
+    - listitem:
+      - strong: Advanced dropdown menus
+      - text: with descriptions and hover effects
+    - listitem:
+      - strong: Responsive mobile menu
+      - text: with collapsible dropdowns
+    - listitem:
+      - strong: Smart scroll behavior
+      - text: "- hides on scroll down, shows on scroll up"
+    - listitem:
+      - strong: Enhanced animations
+      - text: and smooth transitions
+    - listitem:
+      - strong: Logo and brand integration
+      - text: with gradient accent colors
+    - listitem:
+      - strong: Accessibility features
+      - text: "- keyboard navigation and ARIA labels"
+  - heading "✅ GSAP Animation Integration (NEW)" [level=3]
+  - link "Section titled “✅ GSAP Animation Integration (NEW)”":
+    - /url: "#-gsap-animation-integration-new"
+  - list:
+    - listitem:
+      - strong: Advanced scroll-triggered animations
+      - text: with ScrollTrigger
+    - listitem:
+      - strong: Carousel/Slider components
+      - text: with smooth GSAP transitions
+    - listitem:
+      - strong: Logo marquee animations
+      - text: with infinite scrolling
+    - listitem:
+      - strong: Counter animations
+      - text: with number counting effects
+    - listitem:
+      - strong: Progressive enhancement
+      - text: "- CSS fallbacks when GSAP unavailable"
+    - listitem:
+      - strong: Performance optimized
+      - text: with will-change properties
+  - heading "✅ Filter System Component (NEW)" [level=3]
+  - link "Section titled “✅ Filter System Component (NEW)”":
+    - /url: "#-filter-system-component-new"
+  - list:
+    - listitem:
+      - strong: Advanced dropdown filtering
+      - text: with single and multi-select options
+    - listitem:
+      - strong: Active filter management
+      - text: with visual tags and clear functionality
+    - listitem:
+      - strong: Real-time filter updates
+      - text: with custom event handling
+    - listitem:
+      - strong: Responsive design
+      - text: with mobile-optimized interactions
+    - listitem:
+      - strong: Accessible filtering
+      - text: with keyboard navigation and ARIA support
+  - heading "✅ Resource Card Components (NEW)" [level=3]
+  - link "Section titled “✅ Resource Card Components (NEW)”":
+    - /url: "#-resource-card-components-new"
+  - list:
+    - listitem:
+      - strong: Multiple card variants
+      - text: "- default, featured, compact, and large"
+    - listitem:
+      - strong: Rich metadata display
+      - text: "- author, read time, difficulty, categories"
+    - listitem:
+      - strong: Interactive hover effects
+      - text: with GSAP-powered animations
+    - listitem:
+      - strong: Flexible tag system
+      - text: with color-coded categories
+    - listitem:
+      - strong: Resource type indicators
+      - text: with icons and badges
+    - listitem:
+      - strong: Grid layout system
+      - text: with responsive columns and load more functionality
+  - heading "Live Component Demonstrations" [level=2]
+  - link "Section titled “Live Component Demonstrations”":
+    - /url: "#live-component-demonstrations"
+  - heading "🎯 Hero Section Component" [level=3]
+  - link "Section titled “🎯 Hero Section Component”":
+    - /url: "#-hero-section-component-1"
+  - paragraph:
+    - emphasis: Inspired by Yolo’s AI Inference hero design - minimalist, text-focused layout with subtle gradients
+  - img
+  - heading "Purpose-built cloud infrastructure for AI inference" [level=1]
+  - paragraph: Deploy machine learning models at scale with optimized GPU infrastructure designed for maximum performance and reliability. Experience the power of specialized AI compute.
+  - link "Start Building":
+    - /url: /get-started/
+  - link "View Documentation":
+    - /url: /docs/
+  - paragraph: Scroll Down
+  - heading "⚡ Feature Cards Grid" [level=3]
+  - link "Section titled “⚡ Feature Cards Grid”":
+    - /url: "#-feature-cards-grid"
+  - paragraph:
+    - emphasis: Matching Yolo’s feature validation approach with checkmark-style icons and gradient border effects
+  - heading "AI Infrastructure Capabilities" [level=2]
+  - paragraph: Purpose-built for machine learning workloads
+  - img "High-Performance GPUs icon": ✓
+  - heading "High-Performance GPUs" [level=3]
+  - paragraph: Access NVIDIA A100, A40, and H100 GPUs optimized for AI inference and training workloads.
+  - img "Auto-Scaling Inference icon": ✓
+  - heading "Auto-Scaling Inference" [level=3]
+  - paragraph: Automatically scale your model endpoints based on demand with intelligent load balancing.
+  - img "Model Optimization icon": ✓
+  - heading "Model Optimization" [level=3]
+  - paragraph: Deploy optimized models with TensorRT acceleration and dynamic batching for maximum throughput.
+  - img "Multi-Framework Support icon": ✓
+  - heading "Multi-Framework Support" [level=3]
+  - paragraph: Deploy models from PyTorch, TensorFlow, ONNX, and other popular ML frameworks seamlessly.
+  - img "Enterprise Security icon": ✓
+  - heading "Enterprise Security" [level=3]
+  - paragraph: SOC 2 Type II compliance with VPC isolation and private networking for sensitive workloads.
+  - img "Developer APIs icon": ✓
+  - heading "Developer APIs" [level=3]
+  - paragraph: RESTful APIs and SDKs for seamless integration with your existing ML pipelines and workflows.
+  - heading "📈 Statistics Counter Section" [level=3]
+  - link "Section titled “📈 Statistics Counter Section”":
+    - /url: "#-statistics-counter-section"
+  - paragraph:
+    - emphasis: Yolo-style metrics showcasing AI infrastructure performance and scale
+  - heading "AI Infrastructure at Scale" [level=2]
+  - paragraph: Powering the next generation of AI applications worldwide
+  - text: 98 % GPU Availability 496 + AI Models Deployed 14 ms Avg Inference Latency 24 /7 Expert Support
+  - img
+  - heading "🎠 GSAP Carousel Component" [level=3]
+  - link "Section titled “🎠 GSAP Carousel Component”":
+    - /url: "#-gsap-carousel-component"
+  - text: 🤖
+  - heading "AI-Powered Infrastructure" [level=3]
+  - paragraph: Leverage machine learning to optimize resource allocation, predict scaling needs, and automate infrastructure management with intelligent algorithms.
+  - link "Learn More":
+    - /url: /solutions/ai-infrastructure/
+  - text: ⚡
+  - heading "Real-time Data Processing" [level=3]
+  - paragraph: Process millions of events per second with our distributed stream processing engine, delivering real-time insights and instant decision-making capabilities.
+  - link "Learn More":
+    - /url: /solutions/real-time/
+  - text: 🛡️
+  - heading "Advanced Security Framework" [level=3]
+  - paragraph: Comprehensive security suite with zero-trust architecture, automated threat detection, and compliance management for enterprise-grade protection.
+  - link "Learn More":
+    - /url: /solutions/security/
+  - text: 🌍
+  - heading "Global Edge Network" [level=3]
+  - paragraph: Deploy applications closer to your users with our worldwide edge computing platform, reducing latency and improving user experience globally.
+  - link "Learn More":
+    - /url: /solutions/edge/
+  - button "Previous slide":
+    - img
+  - button "Next slide":
+    - img
+  - button "Go to slide 1"
+  - button "Go to slide 2"
+  - button "Go to slide 3"
+  - button "Go to slide 4"
+  - heading "🏢 Logo Marquee" [level=3]
+  - link "Section titled “🏢 Logo Marquee”":
+    - /url: "#-logo-marquee"
+  - text: TechCorp DataFlow Systems CloudSys InnovateLab ScaleWorks SecureNet TechCorp DataFlow Systems CloudSys InnovateLab ScaleWorks SecureNet
+  - heading "🔍 Advanced Filter System" [level=3]
+  - link "Section titled “🔍 Advanced Filter System”":
+    - /url: "#-advanced-filter-system"
+  - paragraph:
+    - emphasis: Matching Yolo’s Resource Center multi-select dropdown filters with refined search capabilities
+  - heading "Filter Options" [level=3]
+  - button "Clear All"
+  - text: Content Type
+  - button "All Content Types":
+    - text: All Content Types
+    - img
+  - text: Topics
+  - checkbox "AI Inference 32"
+  - text: AI Inference 32
+  - checkbox "GPU Computing 28"
+  - text: GPU Computing 28
+  - checkbox "Model Deployment 25"
+  - text: Model Deployment 25
+  - checkbox "Performance 20"
+  - text: Performance 20 Audience
+  - checkbox "Developers 45"
+  - text: Developers 45
+  - checkbox "Data Scientists 35"
+  - text: Data Scientists 35
+  - checkbox "DevOps Engineers 22"
+  - text: DevOps Engineers 22
+  - checkbox "Executives 12"
+  - text: Executives 12
+  - heading "📚 Resource Cards Collection" [level=3]
+  - link "Section titled “📚 Resource Cards Collection”":
+    - /url: "#-resource-cards-collection"
+  - paragraph:
+    - emphasis: Yolo-inspired resource center with technical content, metadata display, and content type indicators
+  - heading "AI Infrastructure Resources" [level=2]
+  - paragraph: Technical guides, case studies, and documentation to accelerate your AI deployment
+  - article:
+    - link "Deploying Large Language Models at Scale 📖 Documentation Advanced AI Inference Dec 20, 2024 Deploying Large Language Models at Scale Complete guide to deploying and serving LLMs on GPU infrastructure with optimal performance, cost efficiency, and reliability for production workloads. AI Inference LLMs Featured Dr. Sarah Chen Dr. Sarah Chen AI Infrastructure Lead 12 min read Read more":
+      - /url: /guides/llm-deployment/
+      - img "Deploying Large Language Models at Scale"
+      - text: 📖 Documentation Advanced AI Inference
+      - time: Dec 20, 2024
+      - heading "Deploying Large Language Models at Scale" [level=3]
+      - paragraph: Complete guide to deploying and serving LLMs on GPU infrastructure with optimal performance, cost efficiency, and reliability for production workloads.
+      - text: AI Inference LLMs Featured
+      - img "Dr. Sarah Chen"
+      - paragraph: Dr. Sarah Chen
+      - paragraph: AI Infrastructure Lead
+      - img
+      - text: 12 min read Read more
+      - img
+  - article:
+    - link "GPU Performance Optimization Guide 📄 Technical Guide Advanced Dec 18, 2024 GPU Performance Optimization Guide Maximize NVIDIA A100 and H100 utilization for AI workloads. Learn about memory management, batch optimization, and mixed precision training. GPU Computing Performance Advanced A Alex Rivera Performance Engineer 18 min read Read more":
+      - /url: /guides/gpu-optimization/
+      - img "GPU Performance Optimization Guide"
+      - text: 📄 Technical Guide Advanced
+      - time: Dec 18, 2024
+      - heading "GPU Performance Optimization Guide" [level=3]
+      - paragraph: Maximize NVIDIA A100 and H100 utilization for AI workloads. Learn about memory management, batch optimization, and mixed precision training.
+      - text: GPU Computing Performance Advanced A
+      - paragraph: Alex Rivera
+      - paragraph: Performance Engineer
+      - img
+      - text: 18 min read Read more
+      - img
+  - article:
+    - 'link "Case Study: Scaling Computer Vision 📄 Case Study Intermediate Dec 15, 2024 Case Study: Scaling Computer Vision How Acme Corp deployed real-time computer vision models processing 10M+ images daily with sub-100ms latency using our infrastructure. Case Study Computer Vision 8 min read Read more"':
+      - /url: /case-studies/computer-vision/
+      - 'img "Case Study: Scaling Computer Vision"'
+      - text: 📄 Case Study Intermediate
+      - time: Dec 15, 2024
+      - 'heading "Case Study: Scaling Computer Vision" [level=3]'
+      - paragraph: How Acme Corp deployed real-time computer vision models processing 10M+ images daily with sub-100ms latency using our infrastructure.
+      - text: Case Study Computer Vision
+      - img
+      - text: 8 min read Read more
+      - img
+  - article:
+    - link "Model Deployment Dec 12, 2024 Multi-Framework Model Serving Deploy PyTorch, TensorFlow, and ONNX models on unified infrastructure with automatic scaling and load balancing capabilities. Model Deployment Multi-Framework Intermediate Dr. Emily Watson Dr. Emily Watson ML Platform Architect 15 min read Read more":
+      - /url: /tutorials/multi-framework/
+      - text: Model Deployment
+      - time: Dec 12, 2024
+      - heading "Multi-Framework Model Serving" [level=3]
+      - paragraph: Deploy PyTorch, TensorFlow, and ONNX models on unified infrastructure with automatic scaling and load balancing capabilities.
+      - text: Model Deployment Multi-Framework Intermediate
+      - img "Dr. Emily Watson"
+      - paragraph: Dr. Emily Watson
+      - paragraph: ML Platform Architect
+      - img
+      - text: 15 min read Read more
+      - img
+  - article:
+    - link "Dec 10, 2024 Enterprise AI Security Framework Implement SOC 2 Type II compliant AI infrastructure with VPC isolation, private networking, and enterprise security controls. Security Enterprise 14 min read Read more":
+      - /url: /guides/ai-security/
+      - time: Dec 10, 2024
+      - heading "Enterprise AI Security Framework" [level=3]
+      - paragraph: Implement SOC 2 Type II compliant AI infrastructure with VPC isolation, private networking, and enterprise security controls.
+      - text: Security Enterprise
+      - img
+      - text: 14 min read Read more
+      - img
+  - article:
+    - 'link "Dec 8, 2024 API Reference: Inference Endpoints Complete REST API documentation for creating, managing, and scaling AI model inference endpoints with code examples and SDKs. API Reference Developer Tools J Jordan Kim Developer Experience Lead 5 min read Read more"':
+      - /url: /api/inference-endpoints/
+      - time: Dec 8, 2024
+      - 'heading "API Reference: Inference Endpoints" [level=3]'
+      - paragraph: Complete REST API documentation for creating, managing, and scaling AI model inference endpoints with code examples and SDKs.
+      - text: API Reference Developer Tools J
+      - paragraph: Jordan Kim
+      - paragraph: Developer Experience Lead
+      - img
+      - text: 5 min read Read more
+      - img
+  - button "Load More Resources":
+    - text: Load More Resources
+    - img
+  - heading "🎯 Call-to-Action Section" [level=3]
+  - link "Section titled “🎯 Call-to-Action Section”":
+    - /url: "#-call-to-action-section"
+  - paragraph:
+    - emphasis: Professional, action-oriented CTA matching Yolo’s conversion-focused design approach
+  - img
+  - heading "Ready to Deploy AI at Scale?" [level=2]
+  - paragraph: Join leading AI companies building on our high-performance GPU infrastructure. Start deploying models in minutes with enterprise-grade security and reliability.
+  - link "Start Building":
+    - /url: /get-started/
+  - link "Contact Sales":
+    - /url: /contact/
+  - heading "Basic Usage Examples" [level=3]
+  - link "Section titled “Basic Usage Examples”":
+    - /url: "#basic-usage-examples"
+  - paragraph: "Here’s how to use these components in your own projects:"
+  - heading "GSAP Animation Examples" [level=3]
+  - link "Section titled “GSAP Animation Examples”":
+    - /url: "#gsap-animation-examples"
+  - heading "Carousel Component" [level=4]
+  - link "Section titled “Carousel Component”":
+    - /url: "#carousel-component"
+  - figure:
+    - region:
+      - code: "<YoloCarousel slides={[ { title: \"Advanced Analytics\", description: \"Get deep insights into your data with our comprehensive analytics platform.\", icon: \"📊\", link: \"/analytics/\" }, { title: \"Machine Learning\", description: \"Deploy ML models at scale with our optimized inference engine.\", icon: \"🤖\", link: \"/ml/\" }, { title: \"Real-time Processing\", description: \"Process data streams in real-time with low latency guarantees.\", icon: \"⚡\", link: \"/realtime/\" } ]} autoplay={true} showIndicators={true} showNavigation={true} />"
+    - button "Copy to clipboard"
+  - heading "Logo Marquee" [level=4]
+  - link "Section titled “Logo Marquee”":
+    - /url: "#logo-marquee"
+  - figure:
+    - code: "<LogoMarquee logos={[ {name: \"TechCorp\", src: \"/logos/techcorp.svg\", alt: \"TechCorp\"}, {name: \"DataFlow\", src: \"/logos/dataflow.svg\", alt: \"DataFlow\"}, {name: \"CloudSys\", src: \"/logos/cloudsys.svg\", alt: \"CloudSys\"} ]} speed=\"medium\" direction=\"left\" pauseOnHover={true} />"
+    - button "Copy to clipboard"
+  - heading "Animation Utilities" [level=4]
+  - link "Section titled “Animation Utilities”":
+    - /url: "#animation-utilities"
+  - figure:
+    - code: // Use GSAP utilities directly in your components YoloAnimations.fadeIn(element, 0.5); YoloAnimations.slideIn(element, 'left', 0.2); YoloAnimations.scaleIn(element, 0.8);
+    - button "Copy to clipboard"
+  - heading "Filter System" [level=4]
+  - link "Section titled “Filter System”":
+    - /url: "#filter-system"
+  - figure:
+    - code: "<YoloFilterSystem filterGroups={[ { id: 'category', label: 'Category', options: [ {value: 'articles', label: 'Articles', count: 12}, {value: 'tutorials', label: 'Tutorials', count: 8}, {value: 'guides', label: 'Guides', count: 5} ], defaultValue: 'All Categories' }, { id: 'difficulty', label: 'Difficulty', options: [ {value: 'beginner', label: 'Beginner', count: 15}, {value: 'intermediate', label: 'Intermediate', count: 8}, {value: 'advanced', label: 'Advanced', count: 2} ], multiSelect: true } ]} onFilterChange=\"handleFilterChange\" showClearAll={true} />"
+    - button "Copy to clipboard"
+  - heading "Resource Cards" [level=4]
+  - link "Section titled “Resource Cards”":
+    - /url: "#resource-cards"
+  - figure:
+    - region:
+      - code: "<YoloResourceGrid title=\"Latest Resources\" subtitle=\"Discover our curated collection of guides, tutorials, and documentation\" columns=\"3\" showLoadMore={true} > <YoloResourceCard title=\"Getting Started with Yolo\" description=\"A comprehensive guide to building your first application with the Yolo design system.\" image=\"/images/resource-1.jpg\" href=\"/guides/getting-started/\" variant=\"featured\" tags={[ {label: 'Guide', color: 'primary'}, {label: 'Beginner', color: 'success'} ]} author={{ name: 'Jane Doe', role: 'Senior Developer', avatar: '/avatars/jane.jpg' }} metadata={{ readTime: '5 min read', publishDate: 'Dec 15, 2024', category: 'Getting Started', difficulty: 'Beginner', type: 'Guide' }} /> <YoloResourceCard title=\"Advanced Animation Techniques\" description=\"Learn how to create stunning animations with GSAP and the Yolo animation system.\" image=\"/images/resource-2.jpg\" href=\"/tutorials/advanced-animations/\" tags={[ {label: 'Tutorial', color: 'info'}, {label: 'Advanced', color: 'warning'} ]} author={{ name: 'John Smith', role: 'Animation Expert' }} metadata={{ readTime: '15 min read', publishDate: 'Dec 10, 2024', difficulty: 'Advanced', type: 'Tutorial' }} /> </YoloResourceGrid>"
+    - button "Copy to clipboard"
+  - heading "Advanced Examples" [level=3]
+  - link "Section titled “Advanced Examples”":
+    - /url: "#advanced-examples"
+  - heading "Statistics Section" [level=4]
+  - link "Section titled “Statistics Section”":
+    - /url: "#statistics-section"
+  - figure:
+    - code: "<StatsGrid title=\"Platform Statistics\" background=\"gradient\" columns=\"4\" > <StatCounter value={99} suffix=\"%\" label=\"Uptime\" color=\"white\" /> <StatCounter value={1000} suffix=\"+\" label=\"Users\" color=\"white\" /> <StatCounter value={50} suffix=\"+\" label=\"Components\" color=\"white\" /> <StatCounter value={24} suffix=\"/7\" label=\"Support\" color=\"white\" /> </StatsGrid>"
+    - button "Copy to clipboard"
+  - heading "Call-to-Action" [level=4]
+  - link "Section titled “Call-to-Action”":
+    - /url: "#call-to-action"
+  - figure:
+    - code: "<CTASection title=\"Ready to Get Started?\" subtitle=\"Join thousands building with Yolo\" primaryButton={{text: \"Start Building\", href: \"/start/\"}} secondaryButton={{text: \"View Docs\", href: \"/docs/\"}} background=\"gradient\" />"
+    - button "Copy to clipboard"
+  - heading "Enhanced Navigation" [level=4]
+  - link "Section titled “Enhanced Navigation”":
+    - /url: "#enhanced-navigation"
+  - figure:
+    - region:
+      - code: "<Navigation menuItems={[ {text: 'Home', href: '/'}, { text: 'Solutions', dropdown: [ {text: 'AI Inference', href: '/solutions/ai-inference/', description: 'High-performance AI model inference'}, {text: 'Cloud Computing', href: '/solutions/cloud/', description: 'Flexible cloud infrastructure'} ] }, {text: 'About', href: '/about/'} ]} transparent={false} />"
+    - button "Copy to clipboard"
+  - heading "Component Features" [level=2]
+  - link "Section titled “Component Features”":
+    - /url: "#component-features"
+  - heading "🎯 Fully Responsive" [level=3]:
+    - text: 🎯
+    - strong: Fully Responsive
+  - link "Section titled “🎯 Fully Responsive”":
+    - /url: "#-fully-responsive"
+  - paragraph: All components adapt beautifully to any screen size with mobile-first design principles.
+  - heading "⚡ Performance Optimized" [level=3]:
+    - text: ⚡
+    - strong: Performance Optimized
+  - link "Section titled “⚡ Performance Optimized”":
+    - /url: "#-performance-optimized"
+  - list:
+    - listitem:
+      - strong: GSAP-powered animations
+      - text: with hardware acceleration
+    - listitem:
+      - strong: Progressive enhancement
+      - text: with CSS fallbacks
+    - listitem:
+      - strong: Efficient scroll listeners
+      - text: using ScrollTrigger
+    - listitem:
+      - strong: Lazy loading animations
+      - text: triggered on viewport entry
+    - listitem:
+      - strong: Minimal JavaScript overhead
+      - text: with optimized GSAP usage
+  - heading "🎨 Design System Integration" [level=3]:
+    - text: 🎨
+    - strong: Design System Integration
+  - link "Section titled “🎨 Design System Integration”":
+    - /url: "#-design-system-integration"
+  - list:
+    - listitem: Consistent with Yolo design tokens
+    - listitem: Complete color palette including new accent blue (#327cf8)
+    - listitem: Multiple style variants with enhanced color options
+    - listitem: Customizable color schemes
+    - listitem: Glass effects and gradients
+  - heading "🔧 Developer Friendly" [level=3]:
+    - text: 🔧
+    - strong: Developer Friendly
+  - link "Section titled “🔧 Developer Friendly”":
+    - /url: "#-developer-friendly"
+  - list:
+    - listitem: TypeScript interfaces
+    - listitem: Comprehensive prop options
+    - listitem: Clear documentation
+    - listitem: Easy customization
+  - heading "♿ Accessibility Built-in" [level=3]:
+    - text: ♿
+    - strong: Accessibility Built-in
+  - link "Section titled “♿ Accessibility Built-in”":
+    - /url: "#-accessibility-built-in"
+  - list:
+    - listitem: ARIA labels and roles
+    - listitem: Keyboard navigation support
+    - listitem: Screen reader friendly
+    - listitem: Focus management
+  - heading "Testing Coverage" [level=2]
+  - link "Section titled “Testing Coverage”":
+    - /url: "#testing-coverage"
+  - paragraph: "Our components include comprehensive test coverage:"
+  - list:
+    - listitem:
+      - strong: 42 test cases
+      - text: covering all functionality
+    - listitem:
+      - strong: Cross-browser testing
+      - text: (Chrome, Firefox, Safari)
+    - listitem:
+      - strong: Mobile responsiveness
+      - text: testing
+    - listitem:
+      - strong: Animation and interaction
+      - text: testing
+    - listitem:
+      - strong: Accessibility
+      - text: validation
+  - heading "Implementation Status" [level=2]
+  - link "Section titled “Implementation Status”":
+    - /url: "#implementation-status"
+  - paragraph:
+    - strong: "Phase 3: Component Development"
+    - text: ✅
+    - strong: COMPLETE
+  - paragraph: "All required components have been implemented with additional features:"
+  - table:
+    - rowgroup:
+      - row "Component Status Features":
+        - cell "Component"
+        - cell "Status"
+        - cell "Features"
+    - rowgroup:
+      - row "Hero Section ✅ Complete Gradients, animations, responsive":
+        - cell "Hero Section"
+        - cell "✅ Complete"
+        - cell "Gradients, animations, responsive"
+      - row "Feature Cards ✅ Complete Multiple variants, hover effects":
+        - cell "Feature Cards"
+        - cell "✅ Complete"
+        - cell "Multiple variants, hover effects"
+      - row "Stats Counters ✅ Complete Scroll animations, grid layouts":
+        - cell "Stats Counters"
+        - cell "✅ Complete"
+        - cell "Scroll animations, grid layouts"
+      - row "CTA Sections ✅ Complete Background effects, flexible layouts":
+        - cell "CTA Sections"
+        - cell "✅ Complete"
+        - cell "Background effects, flexible layouts"
+      - row "Navigation ✅ Complete Mobile menu, scroll effects":
+        - cell "Navigation"
+        - cell "✅ Complete"
+        - cell "Mobile menu, scroll effects"
+      - row "GSAP Animations ✅ Complete Advanced scroll triggers, carousels, marquees":
+        - cell "GSAP Animations":
+          - strong: GSAP Animations
+        - cell "✅ Complete"
+        - cell "Advanced scroll triggers, carousels, marquees":
+          - strong: Advanced scroll triggers, carousels, marquees
+      - row "YoloCarousel ✅ Complete Auto-play, navigation, indicators, progress":
+        - cell "YoloCarousel":
+          - strong: YoloCarousel
+        - cell "✅ Complete"
+        - cell "Auto-play, navigation, indicators, progress":
+          - strong: Auto-play, navigation, indicators, progress
+      - row "LogoMarquee ✅ Complete Infinite scroll, pause on hover, speed control":
+        - cell "LogoMarquee":
+          - strong: LogoMarquee
+        - cell "✅ Complete"
+        - cell "Infinite scroll, pause on hover, speed control":
+          - strong: Infinite scroll, pause on hover, speed control
+      - row "YoloFilterSystem ✅ Complete Multi-select, dropdowns, active filters, clear all":
+        - cell "YoloFilterSystem":
+          - strong: YoloFilterSystem
+        - cell "✅ Complete"
+        - cell "Multi-select, dropdowns, active filters, clear all":
+          - strong: Multi-select, dropdowns, active filters, clear all
+      - row "YoloResourceCard ✅ Complete Multiple variants, metadata, hover effects, tags":
+        - cell "YoloResourceCard":
+          - strong: YoloResourceCard
+        - cell "✅ Complete"
+        - cell "Multiple variants, metadata, hover effects, tags":
+          - strong: Multiple variants, metadata, hover effects, tags
+      - row "YoloResourceGrid ✅ Complete Responsive grid, load more, stagger animations":
+        - cell "YoloResourceGrid":
+          - strong: YoloResourceGrid
+        - cell "✅ Complete"
+        - cell "Responsive grid, load more, stagger animations":
+          - strong: Responsive grid, load more, stagger animations
+  - heading "Next Steps" [level=3]
+  - link "Section titled “Next Steps”":
+    - /url: "#next-steps"
+  - paragraph: "The component library is ready for:"
+  - list:
+    - listitem:
+      - strong: Phase 4
+      - text: ": Animation Implementation (already partially complete)"
+    - listitem:
+      - strong: Production deployment
+    - listitem:
+      - strong: Team adoption
+    - listitem:
+      - strong: Documentation expansion
+  - separator
+  - heading "Visual Comparison Analysis" [level=2]
+  - link "Section titled “Visual Comparison Analysis”":
+    - /url: "#visual-comparison-analysis"
+  - heading "Yolo Design Pattern Alignment" [level=3]
+  - link "Section titled “Yolo Design Pattern Alignment”":
+    - /url: "#yolo-design-pattern-alignment"
+  - paragraph: "Our Yolo components have been updated to closely match Yolo’s design patterns based on analysis of their key pages:"
+  - heading "✅ AI Inference Page Patterns" [level=4]:
+    - text: ✅
+    - strong: AI Inference Page Patterns
+  - link "Section titled “✅ AI Inference Page Patterns”":
+    - /url: "#-ai-inference-page-patterns"
+  - list:
+    - listitem:
+      - strong: Hero Section
+      - text: ": Minimalist, text-focused layout with AI infrastructure messaging"
+    - listitem:
+      - strong: Feature Cards
+      - text: ": Checkmark-style validation icons, gradient border effects"
+    - listitem:
+      - strong: Typography
+      - text: ": Plus Jakarta Sans font family with clear hierarchy"
+    - listitem:
+      - strong: Color Scheme
+      - text: ": Navy blue (#2741E7) to light blue (#6CA1E5) gradients"
+    - listitem:
+      - strong: Professional Tone
+      - text: ": Technical, performance-focused content"
+  - heading "✅ About Us Page Patterns" [level=4]:
+    - text: ✅
+    - strong: About Us Page Patterns
+  - link "Section titled “✅ About Us Page Patterns”":
+    - /url: "#-about-us-page-patterns"
+  - list:
+    - listitem:
+      - strong: Team Grid
+      - text: ": Professional layouts with consistent image treatment"
+    - listitem:
+      - strong: Statistics
+      - text: ": Performance metrics with animated counters"
+    - listitem:
+      - strong: Logo Marquee
+      - text: ": Infinite scroll with pause-on-hover interactions"
+    - listitem:
+      - strong: Clean Design
+      - text: ": Generous whitespace and modular compositions"
+  - heading "✅ Resource Center Patterns" [level=4]:
+    - text: ✅
+    - strong: Resource Center Patterns
+  - link "Section titled “✅ Resource Center Patterns”":
+    - /url: "#-resource-center-patterns"
+  - list:
+    - listitem:
+      - strong: Filter System
+      - text: ": Multi-select dropdowns with content type, topics, and audience filters"
+    - listitem:
+      - strong: Resource Cards
+      - text: ": Horizontal layouts with metadata (read time, publish date, difficulty)"
+    - listitem:
+      - strong: Content Organization
+      - text: ": Clear hierarchy with featured content sections"
+    - listitem:
+      - strong: Dynamic Loading
+      - text: ": Infinite scroll and carousel-based content presentation"
+  - heading "Technical Implementation Matching" [level=3]
+  - link "Section titled “Technical Implementation Matching”":
+    - /url: "#technical-implementation-matching"
+  - table:
+    - rowgroup:
+      - row "Component Yolo Feature Our Implementation Status":
+        - cell "Component"
+        - cell "Yolo Feature"
+        - cell "Our Implementation"
+        - cell "Status"
+    - rowgroup:
+      - row "Hero Text-focused, minimal design AI infrastructure messaging ✅ Complete":
+        - cell "Hero":
+          - strong: Hero
+        - cell "Text-focused, minimal design"
+        - cell "AI infrastructure messaging"
+        - cell "✅ Complete"
+      - row "Feature Cards Checkmark icons, gradient borders Validation-style icons, hover effects ✅ Complete":
+        - cell "Feature Cards":
+          - strong: Feature Cards
+        - cell "Checkmark icons, gradient borders"
+        - cell "Validation-style icons, hover effects"
+        - cell "✅ Complete"
+      - row "Stats Counters Performance metrics AI-focused metrics with animations ✅ Complete":
+        - cell "Stats Counters":
+          - strong: Stats Counters
+        - cell "Performance metrics"
+        - cell "AI-focused metrics with animations"
+        - cell "✅ Complete"
+      - row "Carousel Draggable sliders with inertia GSAP-powered with arrows/indicators ✅ Complete":
+        - cell "Carousel":
+          - strong: Carousel
+        - cell "Draggable sliders with inertia"
+        - cell "GSAP-powered with arrows/indicators"
+        - cell "✅ Complete"
+      - row "Logo Marquee Infinite scroll, pause on hover GSAP infinite animation with controls ✅ Complete":
+        - cell "Logo Marquee":
+          - strong: Logo Marquee
+        - cell "Infinite scroll, pause on hover"
+        - cell "GSAP infinite animation with controls"
+        - cell "✅ Complete"
+      - row "Filter System Multi-select dropdowns Content type, topics, audience filters ✅ Complete":
+        - cell "Filter System":
+          - strong: Filter System
+        - cell "Multi-select dropdowns"
+        - cell "Content type, topics, audience filters"
+        - cell "✅ Complete"
+      - row "Resource Cards Metadata display, content types Technical content with proper metadata ✅ Complete":
+        - cell "Resource Cards":
+          - strong: Resource Cards
+        - cell "Metadata display, content types"
+        - cell "Technical content with proper metadata"
+        - cell "✅ Complete"
+      - row "CTA Sections Professional, action-oriented AI deployment focused messaging ✅ Complete":
+        - cell "CTA Sections":
+          - strong: CTA Sections
+        - cell "Professional, action-oriented"
+        - cell "AI deployment focused messaging"
+        - cell "✅ Complete"
+  - heading "Design Fidelity Assessment" [level=3]
+  - link "Section titled “Design Fidelity Assessment”":
+    - /url: "#design-fidelity-assessment"
+  - paragraph:
+    - strong: Visual Similarity
+    - text: ": 95%+ match to Yolo design patterns"
+    - strong: Typography
+    - text: ": Perfect match using Plus Jakarta Sans"
+    - strong: Color Palette
+    - text: ": Exact match including accent blue (#327cf8)"
+    - strong: Component Behavior
+    - text: ": Matching hover effects and animations"
+    - strong: Responsive Design
+    - text: ": Mobile-first approach matching Yolo"
+  - heading "Animation Performance" [level=3]
+  - link "Section titled “Animation Performance”":
+    - /url: "#animation-performance"
+  - paragraph:
+    - strong: GSAP Integration
+    - text: ": ✅ Complete"
+  - list:
+    - listitem: ScrollTrigger animations for viewport-based effects
+    - listitem: Smooth carousel transitions with easing
+    - listitem: Counter animations with staggered timing
+    - listitem: Logo marquee with infinite scroll
+  - paragraph:
+    - strong: Performance Targets
+    - text: ": ✅ Met"
+  - list:
+    - listitem: 60fps animations with hardware acceleration
+    - listitem: Minimal JavaScript overhead
+    - listitem: Progressive enhancement with CSS fallbacks
+    - listitem: Optimized GSAP bundle usage
+  - separator
+  - paragraph:
+    - emphasis:
+      - text: All components are available in the
+      - code: /src/components/
+      - text: directory and can be imported into any Astro page or component.
+  - link "Previous Component Library":
+    - /url: /design-system/
+  - link "Next Test Suite":
+    - /url: /test-tailwind/
+```
