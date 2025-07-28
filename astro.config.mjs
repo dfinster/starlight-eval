@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
+import tailwind from '@astrojs/tailwind';
 import markdocGrammar from './grammars/markdoc.tmLanguage.json';
 
 export const locales = {
@@ -34,6 +35,7 @@ export default defineConfig({
 	site,
 	trailingSlash: 'always',
 	integrations: [
+		tailwind(),
 		starlight({
 			title: 'Starlight',
 			logo: {
@@ -51,6 +53,20 @@ export default defineConfig({
 			],
 			head: [
 				{
+					tag: 'link',
+					attrs: {
+						href: 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap',
+						rel: 'stylesheet',
+					},
+				},
+				{
+					tag: 'link',
+					attrs: {
+						href: 'https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap',
+						rel: 'stylesheet',
+					},
+				},
+				{
 					tag: 'script',
 					attrs: {
 						src: 'https://cdn.usefathom.com/script.js',
@@ -67,7 +83,7 @@ export default defineConfig({
 					attrs: { property: 'og:image:alt', content: ogImageAlt },
 				},
 			],
-			customCss: ['./src/assets/landing.css'],
+			customCss: ['./src/styles/global.css'],
 			locales,
 			sidebar: [
 				{
