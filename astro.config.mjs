@@ -5,6 +5,13 @@ import starlightLinksValidator from "starlight-links-validator";
 import markdocGrammar from "./grammars/markdoc.tmLanguage.json";
 import mermaid from "astro-mermaid";
 import netlify from "@astrojs/netlify";
+import starlightOpenAPI, {
+  openAPISidebarGroups,
+  createOpenAPISidebarGroup,
+} from "starlight-openapi";
+
+const demoPetstoreGroup = createOpenAPISidebarGroup();
+const demoTrainGroup = createOpenAPISidebarGroup();
 
 export const locales = {
   root: { label: "English", lang: "en" },
@@ -37,7 +44,11 @@ const ogImageAlt = "Make your docs shine with Starlight";
 export default defineConfig({
   site,
   trailingSlash: "always",
-
+  markdown: {
+    shikiConfig: {
+      langs: [markdocGrammar],
+    },
+  },
   integrations: [
     mermaid({
       theme: "default",
@@ -53,23 +64,23 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/dfinster/starlight-eval/edit/main/",
       },
-      social: [
-        {
-          icon: "github",
-          label: "GitHub",
-          href: "https://github.com/withastro/starlight",
-        },
-        { icon: "discord", label: "Discord", href: "https://astro.build/chat" },
-      ],
+      //   social: [
+      //     {
+      //       icon: "github",
+      //       label: "GitHub",
+      //       href: "https://github.com/withastro/starlight",
+      //     },
+      //     { icon: "discord", label: "Discord", href: "https://astro.build/chat" },
+      //   ],
       head: [
-        {
-          tag: "script",
-          attrs: {
-            src: "https://cdn.usefathom.com/script.js",
-            "data-site": "EZBHTSIG",
-            defer: true,
-          },
-        },
+        // {
+        //   tag: "script",
+        //   attrs: {
+        //     src: "https://cdn.usefathom.com/script.js",
+        //     "data-site": "EZBHTSIG",
+        //     defer: true,
+        //   },
+        // },
         {
           tag: "meta",
           attrs: { property: "og:image", content: ogUrl },
@@ -83,6 +94,22 @@ export default defineConfig({
       locales,
       sidebar: [
         {
+          label: "Demo Pages",
+          translations: {
+            "pig-latin": "Emo-day Ages-pay",
+          },
+          items: [
+            "demos/mermaid",
+            "demos/pig_latin_implementation",
+            {
+              label: "Untranslated Demo",
+              autogenerate: { directory: "demos/untranslated" },
+            },
+          ],
+        },
+        demoPetstoreGroup,
+        demoTrainGroup,
+		{
           label: "Start Here",
           translations: {
             de: "Beginne hier",
@@ -126,21 +153,8 @@ export default defineConfig({
           ],
         },
         {
-          label: "Demo Pages",
-          translations: {
-            "pig-latin": "Emo-day Ages-pay",
-          },
-          items: [
-            "demos/mermaid",
-            "demos/pig_latin_implementation",
-            {
-              label: "Untranslated Demo",
-              autogenerate: { directory: "demos/untranslated" },
-            },
-          ],
-        },
-        {
           label: "Guides",
+          collapsed: true,
           translations: {
             de: "Anleitungen",
             es: "Guías",
@@ -161,6 +175,7 @@ export default defineConfig({
         },
         {
           label: "Components",
+          collapsed: true,
           translations: {
             de: "Komponenten",
             fr: "Composants",
@@ -174,6 +189,7 @@ export default defineConfig({
         },
         {
           label: "Reference",
+          collapsed: true,
           translations: {
             de: "Referenzen",
             es: "Referencias",
@@ -193,6 +209,7 @@ export default defineConfig({
         },
         {
           label: "Resources",
+          collapsed: true,
           translations: {
             de: "Ressourcen",
             "zh-CN": "资源",
@@ -207,7 +224,7 @@ export default defineConfig({
           autogenerate: { directory: "resources" },
         },
       ],
-      expressiveCode: { shiki: { langs: [markdocGrammar] } },
+      expressiveCode: true,
       plugins: process.env.CHECK_LINKS
         ? [
             starlightLinksValidator({
@@ -215,7 +232,34 @@ export default defineConfig({
               errorOnInconsistentLocale: true,
             }),
           ]
-        : [],
+        : [
+            starlightOpenAPI([
+              {
+                base: "api/petstore",
+                schema: "src/schemas/petstore.yaml",
+                sidebar: {
+                  label: "Petstore API",
+                  collapsed: true,
+                  group: demoPetstoreGroup,
+                  operations: {
+                    badges: true,
+                  },
+                },
+              },
+              {
+                base: "api/train",
+                schema: "src/schemas/train.yaml",
+                sidebar: {
+                  label: "Train API",
+                  collapsed: true,
+                  group: demoTrainGroup,
+                  operations: {
+                    badges: true,
+                  },
+                },
+              },
+            ]),
+          ],
     }),
   ],
   adapter: netlify(),
