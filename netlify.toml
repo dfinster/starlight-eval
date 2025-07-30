@@ -6,6 +6,12 @@
   NODE_VERSION = "18"
 
 [[redirects]]
+from = "/pig-latin/demos/redirect-to-mermaid"
+to = "/pig-latin/demos/mermaid.html"
+status = 301
+
+# Catch-all rule, MUST BE LAST
+[[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404
