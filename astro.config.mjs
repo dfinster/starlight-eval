@@ -219,9 +219,4 @@ export default defineConfig({
     }),
   ],
   adapter: netlify(),
-  //   https://docs.astro.build/en/guides/integrations-guide/netlify/#static-sites-with-the-netlify-adapter
-  redirects: {
-    "/pig-latin/demos/redirect-to-mermaid/": "/pig-latin/demos/mermaid/",
-    "/pig-latin/demos/redirect-to-mermaid": "/pig-latin/demos/mermaid",
-  },
 });
