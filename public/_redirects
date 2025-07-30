@@ -10,3 +10,5 @@
 # Translated 404s
 /:lang/*            /:lang/404/     404
 /*                  /404/           404
+
+/pig-latin/demos/redirect-to-mermaid/    /pig-latin/demos/mermaid/    301!
