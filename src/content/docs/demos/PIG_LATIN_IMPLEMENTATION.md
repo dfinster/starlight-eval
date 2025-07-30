@@ -1,11 +1,14 @@
-# Pig Latin Locale Implementation for Starlight
+---
+title: "Pig Latin Locale Implementation for Starlight"
+description: ""
+---
 
 This implementation adds Pig Latin as a new locale to your Starlight documentation site, with the following features:
 
 ## What was implemented:
 
 ### 1. **Locale Configuration** (`astro.config.mjs`)
-- Added `'pig-latin': { label: 'Pig Latin', lang: 'en-PL' }` to the locales object
+- Added `'pig-latin': { label: 'Pig Latin', lang: 'pig-latin' }` to the locales object
 - Added translation for the "Demo Pages" sidebar section: `'pig-latin': 'Emo-day Ages-pay'`
 
 ### 2. **Translation File** (`src/content/i18n/pig-latin.json`)
