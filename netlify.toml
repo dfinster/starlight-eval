@@ -10,7 +10,6 @@ from = "/pig-latin/demos/redirect-to-mermaid"
 to = "/pig-latin/demos/mermaid"
 status = 301
 
-
 # Catch-all 404 rule, MUST BE LAST
 [[redirects]]
   from = "/*"
