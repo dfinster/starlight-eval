@@ -5,6 +5,8 @@ import starlightLinksValidator from "starlight-links-validator";
 import markdocGrammar from "./grammars/markdoc.tmLanguage.json";
 import mermaid from "astro-mermaid";
 import netlify from "@astrojs/netlify";
+import starlightHeadingBadges from "starlight-heading-badges";
+import starlightLlmsTxt from 'starlight-llms-txt'
 import starlightOpenAPI, {
   openAPISidebarGroups,
   createOpenAPISidebarGroup,
@@ -109,7 +111,7 @@ export default defineConfig({
         },
         demoPetstoreGroup,
         demoTrainGroup,
-		{
+        {
           label: "Start Here",
           translations: {
             de: "Beginne hier",
@@ -259,6 +261,8 @@ export default defineConfig({
                 },
               },
             ]),
+            starlightHeadingBadges(),
+			starlightLlmsTxt(),
           ],
     }),
   ],
