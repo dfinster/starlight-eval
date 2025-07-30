@@ -22,12 +22,13 @@ export const locales = {
 	hi: { label: 'हिंदी', lang: 'hi' },
 	da: { label: 'Dansk', lang: 'da' },
 	uk: { label: 'Українська', lang: 'uk' },
+	'pig-latin': { label: 'Pig Latin', lang: 'pig-latin' },
 };
 
 /* https://docs.netlify.com/configure-builds/environment-variables/#read-only-variables */
 const NETLIFY_PREVIEW_SITE = process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL;
 
-const site = NETLIFY_PREVIEW_SITE || 'https://your-starlight-docs.netlify.app/';
+const site = NETLIFY_PREVIEW_SITE || 'https://starlight-eval.netlify.app/';
 const ogUrl = new URL('og.jpg?v=1', site).href;
 const ogImageAlt = 'Make your docs shine with Starlight';
 
@@ -47,7 +48,7 @@ export default defineConfig({
 			},
 			lastUpdated: true,
 			editLink: {
-				baseUrl: 'https://github.com/yourusername/starlight-docs/edit/main/',
+				baseUrl: 'https://github.com/dfinster/starlight-eval/edit/main/',
 			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' },
@@ -116,6 +117,13 @@ export default defineConfig({
 							},
 						},
 					],
+				},
+				{
+					label: 'Demo Pages',
+					translations: {
+						'pig-latin': 'Emo-day Ages-pay',
+					},
+					autogenerate: { directory: 'demos' },
 				},
 				{
 					label: 'Guides',
