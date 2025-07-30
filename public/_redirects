@@ -1,6 +1,3 @@
-# Proxy to Phat Houston from our Product Hunt launch — site operated by Otterlord
-/ph/*               https://astro-houston-ph.pages.dev/ph/:splat    200
-
 # Moved content
 /zh/*               /zh-cn/:splat
 /showcase/          /resources/showcase/
@@ -13,3 +10,5 @@
 # Translated 404s
 /:lang/*            /:lang/404/     404
 /*                  /404/           404
+
+/pig-latin/demos/redirect-to-mermaid    /pig-latin/demos/mermaid    301
