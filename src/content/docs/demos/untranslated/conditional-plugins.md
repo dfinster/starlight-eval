@@ -3,7 +3,7 @@ title: "Conditional Plugins"
 description: "How to conditionally enable plugins in Astro based on environment variables."
 ---
 
-## Conditional Plugins in Astro
+## Conditional Plugins in Astro :badge[Hello_World]
 
 This code creates a **conditional plugin configuration** based on an environment variable:
 
